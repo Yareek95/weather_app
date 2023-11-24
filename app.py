@@ -1,7 +1,7 @@
-# app.py
+import os
 from flask import Flask, render_template, request, jsonify
 import requests
-import os
+
 
 
 app = Flask(__name__)
@@ -35,4 +35,4 @@ def index():
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000
     port = int(os.environ.get("PORT", 5000))
-    app.run(port=port)
+    app.run(host="0.0.0.0",port=port)
