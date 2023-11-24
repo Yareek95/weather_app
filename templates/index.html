@@ -1,0 +1,65 @@
+<!-- templates/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/css/style.css') }}">
+    <title>Weather App</title>
+</head>
+<body>
+
+    <h1>Weather App</h1>
+
+    <form id="weatherForm" action="/" method="post">
+        <label for="user_input">Enter City or Zip Code:</label>
+        <input type="text" id="user_input" name="user_input" required>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    {% if weather_data %}
+        <h2>{{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</h2>
+
+        {% if weather_data.current.is_day == 0 %}
+            <p>{{ weather_data.location.localtime }} Night</p>
+        {% elif weather_data.current.is_day == 1 %}
+            <p>{{ weather_data.location.localtime }}  Day</p>
+        {% endif %}
+        <p>Temperature: {{ weather_data.current.temp_c }}°C ({{ weather_data.current.temp_f }}°F)</p>
+        <p>Feels like: {{ weather_data.current.feelslike_c }}°C ({{ weather_data.current.feelslike_f }}°F)</p>
+        <p>Wind: {{ weather_data.current.wind_kph }} km/h, {{ weather_data.current.wind_mph }} mi/h, 
+            {% set direction_mapping = {
+                'N': 'North',
+                'NNE': 'North-NorthEast',
+                'NE': 'NorthEast',
+                'ENE': 'East-NorthEast',
+                'E': 'East',
+                'ESE': 'East-SouthEast',
+                'SE': 'SouthEast',
+                'SSE': 'South-SouthEast',
+                'S': 'South',
+                'SSW': 'South-SouthWest',
+                'SW': 'SouthWest',
+                'WSW': 'West-SouthWest',
+                'W': 'West',
+                'WNW': 'West-NorthWest',
+                'NW': 'NorthWest',
+                'NNW': 'North-NorthWest'
+            } %}
+            {% set direction = direction_mapping.get(weather_data.current.wind_dir, 'Unknown') %}
+            {{ direction }}</p>
+        
+        <p>Condition: {{ weather_data.current.condition.text }}</p>
+        <p>Pressure: {{ weather_data.current.pressure_mb }} mb; {{ weather_data.current.pressure_in }} in</p>
+        <p>Humidity: {{ weather_data.current.humidity }}</p>
+        <p>Cloud: {{ weather_data.current.cloud }}</p>
+        <p>Visibility: {{ weather_data.current.vis_miles }} miles ; {{ weather_data.current.vis_km }} km</p>
+        <p>Gust: {{ weather_data.current.gust_mph }} mph ; {{ weather_data.current.gust_kph }} kph</p>
+        <p>Precipitation: {{ weather_data.current.precip_in }} inches ; {{ weather_data.current.precip_mm }} mm</p>
+    {% endif %}
+
+
+
+</body>
+
+</html>
