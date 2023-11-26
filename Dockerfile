@@ -6,6 +6,7 @@ COPY requirements.txt /app/
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Install necessary dependencies (e.g., chromium)
 RUN apt-get update && apt-get install -y \
     chromium \
     chromium-driver
