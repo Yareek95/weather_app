@@ -24,7 +24,8 @@ jobs:
         pip install -r requirements.txt
 
     - name: Build Docker Image
-      run: docker build -t your-image-name .
+      run: docker build -t weather-image .
 
     - name: Run tests
-      run: docker run your-image-name pytest
+      run: |
+        docker run --rm -it weather-image pytest UITests
