@@ -28,4 +28,4 @@ jobs:
 
     - name: Run tests
       run: |
-        docker run --rm weather-image pytest UITests
+        docker run --rm weather-image pytest APITests
