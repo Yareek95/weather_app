@@ -23,5 +23,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Build Docker Image
+      run: docker build -t your-image-name .
+
     - name: Run tests
-      run: pytest
+      run: docker run your-image-name pytest
