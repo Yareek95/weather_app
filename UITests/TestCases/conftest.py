@@ -15,7 +15,7 @@ def setup(browser):
 
 
 def pytest_addoption(parser):       #This will get the value from CLI / hooks
-    parser.addoption("--browser")
+    parser.addoption("--browser", default="chrome", help="Choose the browser: chrome, firefox, or ie")
 
 @pytest.fixture()
 def browser(request):       #This will return the Browser value to setup method
