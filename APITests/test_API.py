@@ -80,7 +80,7 @@ class TestWeatherAPI(unittest.TestCase):
         self.assertTrue('current' in data)
         self.assertTrue('last_updated' in data['current'])
         self.assertTrue('wind_mph' in data['current'])
-        self.assertTrue('feelslike_' in data['current'])
+        self.assertTrue('feelslike_c' in data['current'])
 
 if __name__ == '__main__':
     unittest.main()
