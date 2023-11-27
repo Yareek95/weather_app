@@ -3,7 +3,7 @@ import requests
 
 class TestWeatherAPI(unittest.TestCase):
     BASE_URL = "https://api.weatherapi.com/v1/current.json"
-    API_KEY = "your_api_key"  # Replace with your API key
+    API_KEY = "489b3e24494946a89ca63057231911"  # Replace with your API key
 
     def test_successful_request(self):
         params = {
