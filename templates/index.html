@@ -75,7 +75,7 @@
     </form>
 
     {% if weather_data %}
-        <h2>{{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</h2>
+        
 
         {% if weather_data.current.is_day == 0 %}
             <p>{{ weather_data.location.localtime }} Night</p>
