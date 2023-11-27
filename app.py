@@ -26,6 +26,9 @@ def index():
 
             if response.status_code == 200:
                 weather_data = response.json()
+            else:
+                # Handle the error, for example:
+                error_message = f"Error: {response.status_code}"
             
 
     return render_template('index.html', user_input=user_input, weather_data=weather_data)
