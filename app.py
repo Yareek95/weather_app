@@ -17,14 +17,10 @@ def index():
     user_input_weather = None
     first_api = None
     second_api_data = None
-    currency_data = None
     error_message = None
 
     if request.method == 'POST':
         user_input_weather = request.form.get('user_input')
-        user_input_currency_1 = request.form.get('user_input_currency_1')
-        user_input_currency_2 = request.form.get('user_input_currency_2')
-        amount = request.form.get('user_input_amount', 1)  # default amount is 1
 
         if user_input_weather:
             # Weather API Call
@@ -54,32 +50,51 @@ def index():
             else:
                 error_message = f"Error: {response_first_api.status_code}"
 
-        elif user_input_currency_1 and user_input_currency_2:
-            # Currency API Call
-            params_currency_api = {
-                'api_key': SECOND_API_KEY,
-                'from': user_input_currency_1,
-                'to': user_input_currency_2,
-                'amount': amount,
-            }
-            response_currency_api = requests.get(CURRENCY_API_BASE_URL, params=params_currency_api)
-
-            if response_currency_api.status_code == 200:
-                currency_data = response_currency_api.json()
-            else:
-                error_message = f"Error: {response_currency_api.json().get('error_message', 'Unknown error')}"
-
     return render_template('index.html', user_input=user_input_weather, weather_data=first_api,
-                           second_api_data=second_api_data, currency_data=currency_data, error_message=error_message)
+                           second_api_data=second_api_data, error_message=error_message)
+
+
+@app.route('/currency', methods=['GET', 'POST'])
+def currency():
+    user_input_currency_1 = None
+    user_input_currency_2 = None
+    amount = None
+    currency_data = None
+    error_message = None
+
+    if request.method == 'POST':
+        user_input_currency_1 = request.form.get('user_input_currency_1')
+        user_input_currency_2 = request.form.get('user_input_currency_2')
+        amount = request.form.get('user_input_amount', 100)  # default amount is 1
+
+        # Currency API Call
+        params_currency_api = {
+            'api_key': SECOND_API_KEY,
+            'from': user_input_currency_1,
+            'to': user_input_currency_2,
+            'amount': amount,
+        }
+        response_currency_api = requests.get(CURRENCY_API_BASE_URL, params=params_currency_api)
+
+        if response_currency_api.status_code == 200:
+            currency_data = response_currency_api.json()
+        else:
+            error_message = f"Error: {response_currency_api.json().get('error_message', 'Unknown error')}"
+
+    return render_template('currency.html', user_input_currency_1=user_input_currency_1,
+                           user_input_currency_2=user_input_currency_2, user_input_amount=amount,
+                           currency_data=currency_data, error_message=error_message)
 
 
 
+
+
+'''
 if __name__ == '__main__':
     app.run(debug=True)
 
-'''    
+  '''
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-'''

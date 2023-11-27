@@ -10,6 +10,7 @@
 <body>
 
     <h1>Currency Converter</h1>
+    <p><a href="{{ url_for('index') }}"><button>Main Page</button></a></p>
 
     <form id="currencyForm" action="/currency" method="post">
         <label for="user_input_currency_1">Enter currency you want to sell:</label>
@@ -23,6 +24,7 @@
 
     {% if currency_data %}
         <h2>You can sell {{user_input_amount}} {{user_input_currency_1}} for {{ currency_data.amount }} {{user_input_currency_2}}</h2>
+        <p>Result showing minimal value ("sell") from the market</p>
     {% endif %}
 
     {% if error_message %}
