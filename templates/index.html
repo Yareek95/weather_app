@@ -37,6 +37,10 @@
         <p>Gust: {{ weather_data.current.gust_mph }} mph ; {{ weather_data.current.gust_kph }} kph</p>
         <p>Precipitation: {{ weather_data.current.precip_in }} inches ; {{ weather_data.current.precip_mm }} mm</p>
     {% endif %}
+
+    {% if error_message %}
+    <p>{{ error_message }}</p>
+    {% endif %}
     
     {% if second_api_data %}
     <h3>Weather Forecast</h3>
@@ -46,7 +50,7 @@
         {% endfor %}
     </ul>
     {% endif %}
-    <p><span style="font-size: 80%;">Powered by <a href="https://www.amdoren.com">Amdoren</span></p>
+    <p><span style="font-size: 50%;">Powered by <a href="https://www.amdoren.com">Amdoren</span></p>
 
 </body>
 </html>
