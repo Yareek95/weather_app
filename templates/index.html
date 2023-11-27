@@ -37,6 +37,16 @@
         <p>Gust: {{ weather_data.current.gust_mph }} mph ; {{ weather_data.current.gust_kph }} kph</p>
         <p>Precipitation: {{ weather_data.current.precip_in }} inches ; {{ weather_data.current.precip_mm }} mm</p>
     {% endif %}
+    
+    {% if second_api_data %}
+    <h3>Weather Forecast</h3>
+    <ul>
+        {% for forecast in second_api_data.forecast %}
+            <li>Date: {{ forecast.date }}, Avg Temperature: {{ forecast.avg_c }}°C ({{ forecast.avg_f }}°F), Summary: {{ forecast.summary }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <p><span style="font-size: 80%;">Powered by <a href="https://www.amdoren.com">Amdoren</span></p>
 
 </body>
 </html>
