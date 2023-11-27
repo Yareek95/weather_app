@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <h1>Welcome to our Weather App</h1>
+    <h1>Web Board</h1>
 
     <form id="weatherForm" action="/" method="post">
         <label for="user_input">Enter City or Zip Code:</label>
@@ -18,39 +18,25 @@
     </form>
 
     {% if weather_data %}
-    <h2>{{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</h2>
+    <!-- Weather data display -->
+    {% endif %}
 
-        {% if weather_data.current.is_day == 0 %}
-            <p>{{ weather_data.location.localtime }} Night</p>
-        {% elif weather_data.current.is_day == 1 %}
-            <p>{{ weather_data.location.localtime }}  Day</p>
-        {% endif %}
-        <p>Temperature: {{ weather_data.current.temp_c }}°C ({{ weather_data.current.temp_f }}°F)</p>
-        <p>Feels like: {{ weather_data.current.feelslike_c }}°C ({{ weather_data.current.feelslike_f }}°F)</p>
-        <p>Wind: {{ weather_data.current.wind_kph }} km/h, {{ weather_data.current.wind_mph }} mi/h, {{ weather_data.current.wind_dir }}</p>
-        
-        <p>Condition: {{ weather_data.current.condition.text }}</p>
-        <p>Pressure: {{ weather_data.current.pressure_mb }} mb; {{ weather_data.current.pressure_in }} in</p>
-        <p>Humidity: {{ weather_data.current.humidity }}</p>
-        <p>Cloud: {{ weather_data.current.cloud }}</p>
-        <p>Visibility: {{ weather_data.current.vis_miles }} miles ; {{ weather_data.current.vis_km }} km</p>
-        <p>Gust: {{ weather_data.current.gust_mph }} mph ; {{ weather_data.current.gust_kph }} kph</p>
-        <p>Precipitation: {{ weather_data.current.precip_in }} inches ; {{ weather_data.current.precip_mm }} mm</p>
+    <form id="currencyForm" action="/" method="post">
+        <label for="user_input_currency_1">Enter currency 1:</label>
+        <input type="text" id="user_input_currency_1" name="user_input_currency_1" required>
+        <label for="user_input_currency_2">Enter currency 2:</label>
+        <input type="text" id="user_input_currency_2" name="user_input_currency_2" required>
+        <button type="submit">Get Value</button>
+    </form>
+
+    {% if currency_data %}
+        <h2>Currency Conversion Result</h2>
+        <p>Amount: {{ currency_data.amount }}</p>
+        <!-- Display other relevant currency data as needed -->
     {% endif %}
 
     {% if error_message %}
-    <p>{{ error_message }}</p>
+        <p>{{ error_message }}</p>
     {% endif %}
-    
-    {% if second_api_data %}
-    <h3>Weather Forecast</h3>
-    <ul>
-        {% for forecast in second_api_data.forecast %}
-            <li>Date: {{ forecast.date }}, Avg Temperature: {{ forecast.avg_c }}°C ({{ forecast.avg_f }}°F), Summary: {{ forecast.summary }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    <p><span style="font-size: 50%;">Powered by <a href="https://www.amdoren.com">Amdoren</span></p>
-
 </body>
 </html>
