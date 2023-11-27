@@ -22,9 +22,9 @@
     {% endif %}
 
     <form id="currencyForm" action="/" method="post">
-        <label for="user_input_currency_1">Enter currency 1:</label>
+        <label for="user_input_currency_1">Enter currency you want to sell:</label>
         <input type="text" id="user_input_currency_1" name="user_input_currency_1" required>
-        <label for="user_input_currency_2">Enter currency 2:</label>
+        <label for="user_input_currency_2">Enter currency you want to purchase:</label>
         <input type="text" id="user_input_currency_2" name="user_input_currency_2" required>
         <label for="user_input_amount">Enter amount:</label>
         <input type="text" id="user_input_amount" name="user_input_amount">
@@ -32,9 +32,8 @@
     </form>
 
     {% if currency_data %}
-        <h2>Currency Conversion Result</h2>
-        <p>Amount: {{ currency_data.amount }}</p>
-        <!-- Display other relevant currency data as needed -->
+        <h2>You can sell {{user_input_amount}} {{user_input_currency_1}} for {{ currency_data.amount }} {{user_input_currency_2}}</h2>
+
     {% endif %}
 
     {% if error_message %}
