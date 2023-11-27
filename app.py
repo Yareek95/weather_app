@@ -69,4 +69,10 @@ def index():
             else:
                 error_message = f"Error: {response_currency_api.json().get('error_message', 'Unknown error')}"
 
-    return render_templ
+    return render_template('index.html', user_input=user_input_weather, weather_data=first_api,
+                           second_api_data=second_api_data, currency_data=currency_data, error_message=error_message)
+
+if __name__ == '__main__':
+    # Use the environment variable PORT if available, or default to 5000
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
