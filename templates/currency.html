@@ -1,0 +1,33 @@
+<!-- templates/currency.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Currency Converter</title>
+</head>
+<body>
+
+    <h1>Currency Converter</h1>
+
+    <form id="currencyForm" action="/currency" method="post">
+        <label for="user_input_currency_1">Enter currency you want to sell:</label>
+        <input type="text" id="user_input_currency_1" name="user_input_currency_1" required>
+        <label for="user_input_currency_2">Enter currency you want to purchase:</label>
+        <input type="text" id="user_input_currency_2" name="user_input_currency_2" required>
+        <label for="user_input_amount">Enter amount:</label>
+        <input type="text" id="user_input_amount" name="user_input_amount">
+        <button type="submit">Get Value</button>
+    </form>
+
+    {% if currency_data %}
+        <h2>You can sell {{user_input_amount}} {{user_input_currency_1}} for {{ currency_data.amount }} {{user_input_currency_2}}</h2>
+    {% endif %}
+
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+</body>
+</html>
