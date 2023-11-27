@@ -5,11 +5,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='static/css/style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        label {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 300px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        h2 {
+            margin-top: 30px;
+        }
+
+        p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+    </style>
     <title>Weather App</title>
 </head>
 <body>
 
-    <h1>Wwlcome to our Weather App</h1>
+    <h1>Welcome to our Weather App</h1>
 
     <form id="weatherForm" action="/" method="post">
         <label for="user_input">Enter City or Zip Code:</label>
@@ -27,27 +84,7 @@
         {% endif %}
         <p>Temperature: {{ weather_data.current.temp_c }}°C ({{ weather_data.current.temp_f }}°F)</p>
         <p>Feels like: {{ weather_data.current.feelslike_c }}°C ({{ weather_data.current.feelslike_f }}°F)</p>
-        <p>Wind: {{ weather_data.current.wind_kph }} km/h, {{ weather_data.current.wind_mph }} mi/h, 
-            {% set direction_mapping = {
-                'N': 'North',
-                'NNE': 'North-NorthEast',
-                'NE': 'NorthEast',
-                'ENE': 'East-NorthEast',
-                'E': 'East',
-                'ESE': 'East-SouthEast',
-                'SE': 'SouthEast',
-                'SSE': 'South-SouthEast',
-                'S': 'South',
-                'SSW': 'South-SouthWest',
-                'SW': 'SouthWest',
-                'WSW': 'West-SouthWest',
-                'W': 'West',
-                'WNW': 'West-NorthWest',
-                'NW': 'NorthWest',
-                'NNW': 'North-NorthWest'
-            } %}
-            {% set direction = direction_mapping.get(weather_data.current.wind_dir, 'Unknown') %}
-            {{ direction }}</p>
+        <p>Wind: {{ weather_data.current.wind_kph }} km/h, {{ weather_data.current.wind_mph }} mi/h, {{ weather_data.current.wind_dir }}</p>
         
         <p>Condition: {{ weather_data.current.condition.text }}</p>
         <p>Pressure: {{ weather_data.current.pressure_mb }} mb; {{ weather_data.current.pressure_in }} in</p>
@@ -58,8 +95,5 @@
         <p>Precipitation: {{ weather_data.current.precip_in }} inches ; {{ weather_data.current.precip_mm }} mm</p>
     {% endif %}
 
-
-
 </body>
-
 </html>
