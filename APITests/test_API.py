@@ -65,7 +65,22 @@ class TestWeatherAPI(unittest.TestCase):
         self.assertTrue('last_updated' in data['current'])
         self.assertTrue('temp_c' in data['current'])
         self.assertTrue('temp_f' in data['current'])
-        # Add more assertions for other response data fields
+
+    def test_response_data(self):
+        params = {
+            'key': self.API_KEY,
+            'q': 'Chicago',
+            'lang': 'en',
+        }
+        response = requests.get(self.BASE_URL, params=params)
+        data = response.json()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue('location' in data)
+        self.assertTrue('current' in data)
+        self.assertTrue('last_updated' in data['current'])
+        self.assertTrue('wind_mph' in data['current'])
+        self.assertTrue('feelslike_c' in data['current'])
 
 if __name__ == '__main__':
     unittest.main()
