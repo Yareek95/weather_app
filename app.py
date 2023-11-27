@@ -7,12 +7,14 @@ app = Flask(__name__)
 BASE_URL = "https://api.weatherapi.com/v1/current.json"
 SECOND_API_BASE_URL = "https://www.amdoren.com/api/weather.php"
 API_KEY = "489b3e24494946a89ca63057231911"
+SECOND_API_KEY = "RSHPS94EemhCEY7QNBfQundpqnUtVk"
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     user_input = None
     weather_data = None
     second_api_data = None
+    error_message = None
 
     if request.method == 'POST':
         user_input = request.form.get('user_input')
@@ -34,7 +36,7 @@ def index():
 
                 # Second API Call
                 params_second_api = {
-                    'api_key': '489b3e24494946a89ca63057231911',  # Replace with your second API key
+                    'api_key': SECOND_API_KEY,
                     'lat': lat,
                     'lon': lon,
                 }
@@ -42,8 +44,12 @@ def index():
 
                 if response_second_api.status_code == 200:
                     second_api_data = response_second_api.json()
+                else:
+                    error_message = f"Error: {response_second_api.json().get('error_message', 'Unknown error')}"
+            else:
+                error_message = f"Error: {response_first_api.status_code}"
 
-    return render_template('index.html', user_input=user_input, weather_data=weather_data, second_api_data=second_api_data)
+    return render_template('index.html', user_input=user_input, weather_data=weather_data, second_api_data=second_api_data, error_message=error_message)
 
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000
