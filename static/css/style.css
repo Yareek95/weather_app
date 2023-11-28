@@ -1,55 +1,94 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
+/* Reset some default margin and padding */
+body,
+h1,
+h2,
+p,
+ul,
+li {
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
 }
 
-h1 {
-    margin-bottom: 20px;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-label {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-input {
-    padding: 10px;
-    margin-bottom: 20px;
-    width: 300px;
+/* Remove margin and padding from the body */
+body {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-button {
-    padding: 10px;
-    background-color: #4caf50;
+/* Apply a background color to the body */
+body {
+    background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+}
+
+/* Style the header */
+header {
+    background-color: #333;
     color: #fff;
+    text-align: center;
+    padding: 10px;
+}
+
+header button {
+    background-color: #fff;
+    color: #333;
+    padding: 8px 16px;
+    text-decoration: none;
     border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #45a049;
-}
-
-h2 {
-    margin-top: 30px;
-}
-
-p {
+    border-radius: 4px;
     font-size: 14px;
-    margin: 5px 0;
+}
+
+/* Style the weather form */
+#weatherForm {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#user_input {
+    padding: 8px;
+}
+
+/* Style the weather info container */
+.weather-info {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.weather-info h2 {
+    color: #333;
+}
+
+/* Style the forecast table */
+.forecast-table-container {
+    margin-top: 20px;
+}
+
+.forecast-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.forecast-table th,
+.forecast-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.forecast-table th {
+    background-color: #333;
+    color: #fff;
+}
+
+/* Style error messages */
+.error-message {
+    color: #ff0000;
+    margin-top: 20px;
+    text-align: center;
 }
