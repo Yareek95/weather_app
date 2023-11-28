@@ -9,16 +9,13 @@
 </head>
 
 <body>
-    <div class="center-div">
-        <p><a href="{{ url_for('currency') }}"><button>Currency Page</button></a></p>
-        <h1>Web Board</h1>
-
+    <h1>Web Board</h1>
+    <p><a href="{{ url_for('currency') }}"><button>Currency Page</button></a></p>
     <form id="weatherForm" action="/" method="post">
         <label for="user_input">Enter City or Zip Code:</label>
         <input type="text" id="user_input" name="user_input" required>
         <button type="submit">Get Weather</button>
     </form>
-    </div>
     {% if weather_data %}
     <div class="weather-info">
         <h2>{{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</h2>
