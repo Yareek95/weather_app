@@ -1,0 +1,31 @@
+.forecast-table-container {
+    margin-top: 20px;
+}
+.forecast-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+.forecast-table th,
+.forecast-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+.forecast-table th {
+    background-color: #333;
+    color: #fff;
+}
+/* Style error messages */
+.error-message {
+    color: #ff0000;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.center-div {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+}
