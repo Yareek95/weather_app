@@ -17,6 +17,7 @@
         <button type="submit">Get Weather</button>
     </form>
     {% if weather_data %}
+    <p>Current data:</p>
     <div class="weather-info">
         <h2>{{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</h2>
 
@@ -40,6 +41,7 @@
         {% endif %}
 
     {% if second_api_data %}
+     <p>Forecast/Summary:</p>
     <div class="forecast-table-container">
         <table class="forecast-table">
             <thead>
