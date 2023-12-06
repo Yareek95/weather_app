@@ -153,15 +153,16 @@ def dashboard():
     return redirect(url_for('login'))
 
 '''
-if __name__ == '__main__':
-    # Use the environment variable PORT if available, or default to 5000
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+
 
 
 
     *** test ***
-
-  '''
 if __name__ == '__main__':
     app.run(debug=True)
+  '''
+
+if __name__ == '__main__':
+    # Use the environment variable PORT if available, or default to 5000
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
