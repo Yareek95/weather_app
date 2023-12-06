@@ -1,19 +1,37 @@
 import os
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, session, redirect, url_for
+from flask_pymongo import PyMongo
+from flask_bcrypt import Bcrypt
 import requests
+import secrets
 
 app = Flask(__name__)
 
-FIRST_API_BASE_URL = "https://api.weatherapi.com/v1/current.json"   #base weather
-SECOND_API_BASE_URL = "https://www.amdoren.com/api/weather.php"     #forecast weather
-CURRENCY_API_BASE_URL = "https://www.amdoren.com/api/currency.php"  #currency
+app.secret_key = secrets.token_hex(16)
+
+FIRST_API_BASE_URL = "https://api.weatherapi.com/v1/current.json"  # base weather
+SECOND_API_BASE_URL = "https://www.amdoren.com/api/weather.php"  # forecast weather
+CURRENCY_API_BASE_URL = "https://www.amdoren.com/api/currency.php"  # currency
 
 FIRST_API_KEY = "489b3e24494946a89ca63057231911"
 # SECOND and CURRENCY have the same KEY:
 SECOND_API_KEY = "RSHPS94EemhCEY7QNBfQundpqnUtVk"
 
+app.config['MONGO_URI'] = "mongodb+srv://Yarik:sUh9HQyUiye6baoG@login.wrtuhbw.mongodb.net/weather-app"
+mongo = PyMongo(app)
+bcrypt = Bcrypt(app)
+
+
+# sUh9HQyUiye6baoG - mongodb password
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    return render_template('index.html')
+
+
+@app.route('/weather', methods=['GET', 'POST'])
+def weather():
     user_input_weather = None
     first_api = None
     second_api_data = None
@@ -50,7 +68,7 @@ def index():
             else:
                 error_message = f"Error: {response_first_api.status_code}"
 
-    return render_template('index.html', user_input=user_input_weather, weather_data=first_api,
+    return render_template('weather.html', user_input=user_input_weather, weather_data=first_api,
                            second_api_data=second_api_data, error_message=error_message)
 
 
@@ -86,20 +104,64 @@ def currency():
                            currency_data=currency_data, error_message=error_message)
 
 
+# Registration route
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+    print(mongo.db)  # Add this line to check the value of mongo.db
+    if request.method == 'POST':
+        username = request.form['username']
+        password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+
+        # Check if the username already exists
+        existing_user = mongo.db.users.find_one({'username': username})
+        if existing_user:
+            return render_template('register.html', error_message='Username already exists. Choose another.')
+
+        # Insert new user into MongoDB
+        mongo.db.users.insert_one({'username': username, 'password': password})
+        return redirect(url_for('login'))
+
+    return render_template('register.html')
+
+# Login route
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+
+        # Check if the username exists
+        existing_user = mongo.db.users.find_one({'username': username})
+        if existing_user and bcrypt.check_password_hash(existing_user['password'], password):
+            session['username'] = username
+            return redirect(url_for('dashboard'))
+
+    return render_template('login.html')
 
 
+# Logout route
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
+
+@app.route('/dashboard')
+def dashboard():
+    if 'username' in session:
+        return render_template('dashboard.html', username=session['username'])
+    return redirect(url_for('login'))
 
 '''
-
-
-
-
-    *** test ***
-if __name__ == '__main__':
-    app.run(debug=True)
-  '''
-
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
+
+
+    *** test ***
+
+  '''
+if __name__ == '__main__':
+    app.run(debug=True)
