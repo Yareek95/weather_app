@@ -110,7 +110,14 @@ def register():
     print(mongo.db)  # Add this line to check the value of mongo.db
     if request.method == 'POST':
         username = request.form['username']
-        password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        # Check if the password and confirm password match
+        if password != confirm_password:
+            return render_template('register.html', error_message='Password and confirm password do not match.')
+
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
         # Check if the username already exists
         existing_user = mongo.db.users.find_one({'username': username})
@@ -118,10 +125,11 @@ def register():
             return render_template('register.html', error_message='Username already exists. Choose another.')
 
         # Insert new user into MongoDB
-        mongo.db.users.insert_one({'username': username, 'password': password})
+        mongo.db.users.insert_one({'username': username, 'password': hashed_password})
         return redirect(url_for('login'))
 
     return render_template('register.html')
+
 
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
@@ -152,10 +160,13 @@ def dashboard():
         return render_template('dashboard.html', username=session['username'])
     return redirect(url_for('login'))
 
+
+@app.route('/about')
+def about():
+    username = session.get('username')
+    return render_template('about.html', username=username)
+
 '''
-
-
-
 
     *** test ***
 if __name__ == '__main__':

@@ -9,6 +9,18 @@
 </head>
 
 <body>
+    <h2>Login</h2>
+    {% if 'username' in session %}
+        <p><a href="{{ url_for('logout') }}"><button>Logout</button></a>
+            <a href="{{ url_for('index') }}"><button>Main Page</button></a>
+            <a href="{{ url_for('dashboard') }}"><button>Dashboard</button></a>
+            <a href="{{ url_for('about') }}"><button>About</button></a></p>
+    {% else %}
+        <p><a href="{{ url_for('login') }}"><button>Login</button></a>
+            <a href="{{ url_for('register') }}"><button>Register</button></a>
+            <a href="{{ url_for('about') }}"><button>About</button></a>
+            <a href="{{ url_for('index') }}"><button>Main Page</button></a></p>
+    {% endif %}
     <div class="center-div">
         <h2>Login</h2>
         <form method="post">
@@ -18,7 +30,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <br>
-            <button type="submit">Login</button>
+            <button type="submit">Submit</button>
         </form>
         {% if error_message %}
             <p class="error-message">{{ error_message }}</p>
