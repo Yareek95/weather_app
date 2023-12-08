@@ -12,7 +12,6 @@
     <h2>Main Page</h2>
     {% if 'username' in session %}
         <p><a href="{{ url_for('logout') }}"><button>Logout</button></a>
-            <a href="{{ url_for('index') }}"><button>Main Page</button></a>
             <a href="{{ url_for('dashboard') }}"><button>Dashboard</button></a>
             <a href="{{ url_for('about') }}"><button>About</button></a></p>
     {% else %}
@@ -24,11 +23,11 @@
     {% if error_message %}
     <p class="error-message">{{ error_message }}</p>
     {% endif %}
-    <div class="center-div">
-        <p class="connect-text" style="font-size: 10px;"><a href="https://www.linkedin.com/in/yaroslav-ovsiienko">
-            <img src="{{ url_for('static', filename='link-icons/linkedin.svg') }}" alt=linkedin.svg></a>
-        </p>
-    </div>
+    <p class="connect-text">To contribute to the next release, please contact
+        <a href="https://www.linkedin.com/in/yaroslav-ovsiienko">
+            <img src="{{ url_for('static', filename='link-icons/linkedin.svg') }}" alt=linkedin.svg>
+        </a>
+    </p>
 
 </body>
 </html>

@@ -10,23 +10,28 @@
 
 <body>
     <h1>Weather</h1>
+    <div class="header-pages">
         {% if 'username' in session %}
-        <p><a href="{{ url_for('logout') }}"><button>Logout</button></a>
-            <a href="{{ url_for('index') }}"><button>Main Page</button></a>
-            <a href="{{ url_for('dashboard') }}"><button>Dashboard</button></a>
-    {% else %}
-        <p><a href="{{ url_for('login') }}"><button>Login</button></a>
-            <a href="{{ url_for('register') }}"><button>Register</button></a>
-            <a href="{{ url_for('about') }}"><button>About</button></a>
-            <a href="{{ url_for('index') }}"><button>Main Page</button></a></p>
-    {% endif %}
-    <form id="weatherForm" action="/weather" method="post">
-        <label for="user_input">Enter City or Zip Code:</label>
-        <input type="text" id="user_input" name="user_input" required>
-        <button type="submit">Get Weather</button>
-    </form>
+            <p><a href="{{ url_for('logout') }}"><button>Logout</button></a>
+                <a href="{{ url_for('index') }}"><button>Main Page</button></a>
+                <a href="{{ url_for('dashboard') }}"><button>Dashboard</button></a>
+        {% else %}
+            <p><a href="{{ url_for('login') }}"><button>Login</button></a>
+                <a href="{{ url_for('register') }}"><button>Register</button></a>
+                <a href="{{ url_for('about') }}"><button>About</button></a>
+                <a href="{{ url_for('index') }}"><button>Main Page</button></a></p>
+        {% endif %}
+    </div>
+    <div class="input-field">
+        <form id="weatherForm" action="/weather" method="post">
+            <label for="user_input"></label>
+            <input type="text" id="user_input" name="user_input" placeholder="Search City or Zip Code" required>
+            <button type="submit">
+                <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
+            </button>
+        </form>
+    </div>
     {% if weather_data %}
-    <p>Current data:</p>
     <div class="weather-info">
         <h2>{{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</h2>
 
@@ -50,9 +55,8 @@
         {% endif %}
 
     {% if second_api_data %}
-     <p>Forecast/Summary:</p>
     <div class="forecast-table-container">
-        <table class="forecast-table">z
+        <table class="forecast-table">
             <thead>
                 <tr>
                     <th>Date</th>

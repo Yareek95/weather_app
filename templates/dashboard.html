@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <h2>Dashboard</h2>
     {% if 'username' in session %}
         <p><a href="{{ url_for('logout') }}"><button>Logout</button></a>
             <a href="{{ url_for('index') }}"><button>Main Page</button></a>
@@ -24,8 +23,8 @@
     {% endif %}
     <div class="center-div">
         <h2>Welcome, {{ username }}!</h2>
-        <p>Dashboard content goes here.</p>
     </div>
+    <p>Dashboard content goes here.</p>
 </body>
 
 </html>
