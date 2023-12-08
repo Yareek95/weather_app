@@ -9,25 +9,34 @@
 </head>
 
 <body>
-    <h2>Main Page</h2>
+    <div class="header-pages">
     {% if 'username' in session %}
-        <p><a href="{{ url_for('logout') }}"><button>Logout</button></a>
+        <p><a href="{{ url_for('logout') }}"><button>
+                <img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg> Logout</button>
+            </a>
             <a href="{{ url_for('dashboard') }}"><button>Dashboard</button></a>
             <a href="{{ url_for('about') }}"><button>About</button></a></p>
     {% else %}
-        <p><a href="{{ url_for('login') }}"><button>Login</button></a>
+        <p><a href="{{ url_for('login') }}"><button>
+                <img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg> Login</button>
+            </a>
             <a href="{{ url_for('register') }}"><button>Register</button></a>
             <a href="{{ url_for('about') }}"><button>About</button></a>
-    {% endif %}
-
+            {% endif %}
+    </div>
     {% if error_message %}
     <p class="error-message">{{ error_message }}</p>
     {% endif %}
-    <p class="connect-text">To contribute to the next release, please contact
-        <a href="https://www.linkedin.com/in/yaroslav-ovsiienko">
-            <img src="{{ url_for('static', filename='link-icons/linkedin.svg') }}" alt=linkedin.svg>
-        </a>
-    </p>
+    <div class ="MainPageContent">
+        <p></p>
+    </div>
+    <div class="center-div">
+        <p class="connect-text">To contribute to the next release, please contact
+            <a href="https://www.linkedin.com/in/yaroslav-ovsiienko">
+                <img src="{{ url_for('static', filename='link-icons/linkedin.svg') }}" alt=linkedin.svg>
+            </a>
+        </p>
+    </div>
 
 </body>
 </html>
