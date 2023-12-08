@@ -23,21 +23,28 @@ button:hover {
     background-color: #2980b9;
 }
 
+.body-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 160px;
+}
+
 .weather-info {
-    margin-top: 150px;
-    text-align: center;
+    flex: 0 0 25%; /* 30% width, don't grow or shrink */
+    margin-right: 10px;  /*Adjust margin as needed */
 }
 
 .forecast-table-container {
-    margin-top: 10px;
+    flex: 0 0 70%; /* 70% width, don't grow or shrink */
 }
+
 
 .forecast-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.forecast-table th, .forecast-table td {
+.forecast-table td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
