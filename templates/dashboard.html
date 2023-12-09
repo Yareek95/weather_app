@@ -17,15 +17,26 @@
             <a href="{{ url_for('index') }}"><button>
                 <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
             </a>
-            <a href="{{ url_for('about') }}"><button>About</button></a>
-            <a href="{{ url_for('weather') }}"><button>Weather</button></a>
-            <a href="{{ url_for('currency') }}"><button>Currency</button></a></p>
+            <a href="{{ url_for('about') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button>
+            </a>
+            <a href="{{ url_for('weather') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/weather.svg') }}" alt=weather.svg></button>
+            </a>
+            <a href="{{ url_for('currency') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/coins-solid.svg') }}" alt=coins-solid.svg></button>
+            </a>
+        </p>
     {% else %}
         <p><a href="{{ url_for('login') }}"><button>
                 <img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg></button>
             </a>
-            <a href="{{ url_for('register') }}"><button>Register</button></a>
-            <a href="{{ url_for('about') }}"><button>About</button></a>
+            <a href="{{ url_for('register') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}" alt=registration.svg></button>
+            </a>
+            <a href="{{ url_for('about') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button>
+            </a>
             <a href="{{ url_for('index') }}"><button>
                 <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
             </a>

@@ -167,12 +167,35 @@ def about():
     return render_template('about.html', username=username)
 
 '''
-
-    *** test ***
-if __name__ == '__main__':
-    app.run(debug=True)
-  '''
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+    *** test ***
+
+  '''
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+"""
+
+.header-pages a {
+    text-decoration: none;
+    color: #fff; /* Change the text color to your preference */
+    margin: 10px; /* Add margin between buttons */
+}
+
+.header-pages button {
+    top: 5px;
+    font-size: 16px; /* Adjust button font size */
+    border-radius: 10px;
+    width: 120px;
+    height: 75px;
+
+}
+
+.header-pages img {
+    width: 40px;
+}
+"""

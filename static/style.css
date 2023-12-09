@@ -2,40 +2,101 @@ body {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #dbd9d0;
+    background-color:black;
+    background-image:
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+}
+
+.content-about {
+    text-align: left;
+    margin-top: 170px;
+    font-size: 15px;
+    color: #3faa88;
+    width: 100%;
+
 }
 
 .center-div {
     text-align: center;
     margin-top: 150px;
+    color: #3faa88;
+}
+.center-div input{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 10px;
+}
+
+.center-div-register {
+    text-align: center;
+    margin-top: 110px; /* Adjust the margin based on your layout */
+    width: 100%;
+    color: #3faa88;
+
+}
+
+form {
+    max-width: 150px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.error-message {
+    color: #ff0000;
+    margin-top: 10px;
+}
+
+p a button img {
+    width: 30px;
 }
 
 button {
     padding: 10px;
-    background-color: #3498db;
+    background-color: #78419d;
     color: #fff;
     border: none;
     text-decoration: none;
     cursor: pointer;
-}
-
-button:hover {
-    background-color: #2980b9;
+    border-radius: 4px;
 }
 
 .body-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 160px;
+    margin-top: 255px;
 }
 
 .weather-info {
-    flex: 0 0 25%; /* 30% width, don't grow or shrink */
-    margin-right: 10px;  /*Adjust margin as needed */
+    flex: 0 0 20%; /* 30% width, don't grow or shrink */
+    margin-right: 5%;  /*Adjust margin as needed */
+}
+
+.weather-info p {
+    color: #3faa88;
 }
 
 .forecast-table-container {
-    flex: 0 0 70%; /* 70% width, don't grow or shrink */
+    flex: 0 0 75%; /* 70% width, don't grow or shrink */
 }
 
 
@@ -46,6 +107,7 @@ button:hover {
 
 .forecast-table td {
     border: 1px solid #ddd;
+    color: #991aa7;
     padding: 8px;
     text-align: center;
 }
@@ -76,7 +138,7 @@ button:hover {
 
 .connect-text a {
     text-decoration: none;
-    color: #333; /* Adjust color as needed */
+    color: #c4c3d7; /* Adjust color as needed */
 }
 
 .connect-text img {
@@ -90,41 +152,66 @@ button:hover {
 }
 
 .header-pages {
+    height: 80px;
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 0px;
+    left: 0px;
     width: 100%;
-    background-color: #b8b5a3; /* Change the background color to your preference */
-    padding: 5px; /* Adjust padding as needed for spacing */
-    text-align: left; /* Center the buttons horizontally */
-}
-
-.header-pages a {
-    text-decoration: none;
-    color: #fff; /* Change the text color to your preference */
-    margin: 10px; /* Add margin between buttons */
+    background:
+        linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+        linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+        linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+        linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+        linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+        linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+    border: 15px solid;
+    padding: 15px;
+    border-image: repeating-linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89)) 20;
+    border-image-slice: 480 2660 340 2660; /* Adjust as needed */
+    border-image-width: 30px 20% 20px 60px; /* Adjust as needed */
+    border-image-outset: 10px 0px 10px 0px; /* Adjust as needed */
+    border-image-repeat: stretch stretch; /* Adjust as needed */
+    border-image-source: url("https://picjumbo.com/wp-content/uploads/ukraine-flag-in-ukrainian-nature-free-photo.jpg");
+    border-style: solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header-pages button {
-    font-size: 16px; /* Adjust button font size */
+    margin-left: 100px; /* Adjust as needed */
 }
 
-.input-field {
+.input-section {
     position: fixed;
-    top: 70px;
-    left: 0px;
+    top: 149px;
     width: 100%;
-    background-color: #335; /* Change the background color to your preference */
-    padding: 20px; /* Adjust padding as needed for spacing */
-    text-align: center; /* Center the buttons horizontally */
-    font-size: 16px;
+    padding: 5px; /* Adjust padding as needed for spacing */
+    display: flex;
+    justify-content: space-between; /* Add this to space items evenly */
 }
 
-.input-field button {
-    font-size: 10px; /* Adjust button font size */
-    width: 50px;
+.input-section input {
+    width: 150px;
+    height: 30px;
+    padding: 5px;
+    flex: 0 0 30%; /* 30% width, don't grow or shrink */
+    margin-right: 5px;  /*Adjust margin as needed */
 }
 
+.input-section button {
+    width: 150px;
+    height: 30px;
+    padding: 5px;
+    margin-right: 5px;
+    flex: 0 0 20%; /* 30% width, don't grow or shrink */
+}
+
+.input-section button:hover {
+    background-color: #29b930;
+}
 
 .currency-form {
     top: 200px;
@@ -140,3 +227,12 @@ button:hover {
     font-size: 10px; /* Adjust button font size */
     width: 50px;
 }
+
+.center-div-main {
+    text-align: center;
+    margin-top: 250px;
+    font-size: 15px;
+    color: #3faa88;
+
+}
+
