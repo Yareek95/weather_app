@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="header-pages">
+    <div class="header-background header-buttons">
     {% if 'username' in session %}
         <p><a href="{{ url_for('logout') }}">
                 <button><img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
@@ -22,13 +22,13 @@
         </p>
     {% else %}
         <p><a href="{{ url_for('login') }}">
-                <button><img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg> Login</button>
+                <button><img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg></button>
             </a>
             <a href="{{ url_for('register') }}">
-                <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}" alt=registration.svg>Registration</button>
+                <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}" alt=registration.svg>Registr</button>
             </a>
             <a href="{{ url_for('about') }}">
-                <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg>About</button>
+                <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button>
             </a>
             {% endif %}
     </div>

@@ -9,107 +9,105 @@
 </head>
 
 <body>
-    <div class="body-container">
-        <div class="header-pages">
-            {% if 'username' in session %}
-                <div class="user-buttons">
-                    <a href="{{ url_for('logout') }}">
-                        <button><img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
-                    </a>
-                    <a href="{{ url_for('index') }}">
-                        <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
-                    </a>
-                    <a href="{{ url_for('dashboard') }}">
-                        <button><img src="{{ url_for('static', filename='link-icons/book-atlas-solid.svg') }}" alt=book-atlas-solid.svg></button>
-                    </a>
-                </div>
-            {% else %}
-                <div class="guest-buttons">
-                    <a href="{{ url_for('login') }}">
-                        <button><img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg></button>
-                    </a>
-                    <a href="{{ url_for('register') }}">
-                        <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}" alt=registration.svg></button>
-                    </a>
-                    <a href="{{ url_for('about') }}">
-                        <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button></a>
-                    <a href="{{ url_for('index') }}">
-                        <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
-                    </a>
-                </div>
-            {% endif %}
-        </div>
+    <div class="header-background header-buttons">
+        {% if 'username' in session %}
+            <p><a href="{{ url_for('logout') }}">
+                    <button><img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
+                </a>
+                <a href="{{ url_for('index') }}">
+                    <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
+                </a>
+                <a href="{{ url_for('dashboard') }}">
+                    <button><img src="{{ url_for('static', filename='link-icons/book-atlas-solid.svg') }}" alt=book-atlas-solid.svg></button>
+                </a>
+            </p
+        {% else %}
+            <p><a href="{{ url_for('login') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg></button>
+                </a>
+                <a href="{{ url_for('register') }}">
+                    <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}" alt=registration.svg></button>
+                </a>
+                <a href="{{ url_for('about') }}">
+                    <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button></a>
+                <a href="{{ url_for('index') }}">
+                    <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button></a>
+            </p>
+        {% endif %}
+    </div>
         <div class="input-section">
             <form id="weatherForm" action="/weather" method="post">
                 <label for="user_input"></label>
                 <input type="text" id="user_input" name="user_input" placeholder="City Name or Zip Code" required>
                 <button type="submit">
-                    <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>Search
+                    <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
                 </button>
             </form>
         </div>
-        {% if weather_data %}
-        <div class="weather-info">
-            {% if weather_data.current.is_day == 0 %}
-                {% if second_api_data %}
-                    <p>{{ weather_data.current.condition.text }} Night in {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
-                {% endif %}
+        <div class="body-container">
+            {% if weather_data %}
+                <div class="weather-info">
+                    {% if weather_data.current.is_day == 0 %}
+                        {% if second_api_data %}
+                            <p>{{ weather_data.current.condition.text }} Night in {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
+                        {% endif %}
 
-            {% elif weather_data.current.is_day == 1 %}
-                {% if second_api_data %}
-                    <p>{{ weather_data.current.condition.text }} Day in {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
-                {% endif %}
+                    {% elif weather_data.current.is_day == 1 %}
+                        {% if second_api_data %}
+                            <p>{{ weather_data.current.condition.text }} Day in {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
+                        {% endif %}
+                    {% endif %}
+                    <p>Local time is: {{ weather_data.location.localtime }}</p>
+                    <p>Temperature: {{ weather_data.current.temp_c }}°C ({{ weather_data.current.temp_f }}°F)</p>
+                    <p>Feels like: {{ weather_data.current.feelslike_c }}°C ({{ weather_data.current.feelslike_f }}°F)</p>
+                    <p>Wind: {{ weather_data.current.wind_kph }} km/h, {{ weather_data.current.wind_mph }} mi/h, {{ weather_data.current.wind_dir }}</p>
+                    <p>Pressure: {{ weather_data.current.pressure_mb }} mb; {{ weather_data.current.pressure_in }} in</p>
+                    <p>Humidity: {{ weather_data.current.humidity }}</p>
+                    <p>Cloud: {{ weather_data.current.cloud }}</p>
+                    <p>Visibility: {{ weather_data.current.vis_miles }} miles ; {{ weather_data.current.vis_km }} km</p>
+                    <p>Gust: {{ weather_data.current.gust_mph }} mph ; {{ weather_data.current.gust_kph }} kph</p>
+                    <p>Precipitation: {{ weather_data.current.precip_in }} inches ; {{ weather_data.current.precip_mm }} mm</p>
+                </div>
+            
+
+            <div class="forecast-table-container">
+                <table class="forecast-table">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Avg C</th>
+                            <th>Min C</th>
+                            <th>Max C</th>
+                            <th>Avg F</th>
+                            <th>Min F</th>
+                            <th>Max F</th>
+                            <th>Summary</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for day in second_api_data.forecast %}
+                        <tr>
+                            <td>{{ day.date }}</td>
+                            <td>{{ day.avg_c }}</td>
+                            <td>{{ day.min_c }}</td>
+                            <td>{{ day.max_c }}</td>
+                            <td>{{ day.avg_f }}</td>
+                            <td>{{ day.min_f }}</td>
+                            <td>{{ day.max_f }}</td>
+                            <td>{{ day.summary }}<img src="{{ url_for('static', filename='weather-icons/' + day.icon) }}" alt=f"{{day.icon}}"></td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
             {% endif %}
-            <p>Local time is: {{ weather_data.location.localtime }}</p>
-            <p>Temperature: {{ weather_data.current.temp_c }}°C ({{ weather_data.current.temp_f }}°F)</p>
-            <p>Feels like: {{ weather_data.current.feelslike_c }}°C ({{ weather_data.current.feelslike_f }}°F)</p>
-            <p>Wind: {{ weather_data.current.wind_kph }} km/h, {{ weather_data.current.wind_mph }} mi/h, {{ weather_data.current.wind_dir }}</p>
-            <p>Pressure: {{ weather_data.current.pressure_mb }} mb; {{ weather_data.current.pressure_in }} in</p>
-            <p>Humidity: {{ weather_data.current.humidity }}</p>
-            <p>Cloud: {{ weather_data.current.cloud }}</p>
-            <p>Visibility: {{ weather_data.current.vis_miles }} miles ; {{ weather_data.current.vis_km }} km</p>
-            <p>Gust: {{ weather_data.current.gust_mph }} mph ; {{ weather_data.current.gust_kph }} kph</p>
-            <p>Precipitation: {{ weather_data.current.precip_in }} inches ; {{ weather_data.current.precip_mm }} mm</p>
+
+            {% if error_message %}
+            <p class="error-message">{{ error_message }}</p>
+            {% endif %}
         </div>
-        
-
-        <div class="forecast-table-container">
-            <table class="forecast-table">
-                <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Avg C</th>
-                        <th>Min C</th>
-                        <th>Max C</th>
-                        <th>Avg F</th>
-                        <th>Min F</th>
-                        <th>Max F</th>
-                        <th>Summary</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                {% for day in second_api_data.forecast %}
-                    <tr>
-                        <td>{{ day.date }}</td>
-                        <td>{{ day.avg_c }}</td>
-                        <td>{{ day.min_c }}</td>
-                        <td>{{ day.max_c }}</td>
-                        <td>{{ day.avg_f }}</td>
-                        <td>{{ day.min_f }}</td>
-                        <td>{{ day.max_f }}</td>
-                        <td>{{ day.summary }}<img src="{{ url_for('static', filename='weather-icons/' + day.icon) }}" alt=f"{{day.icon}}"></td>
-                    </tr>
-                {% endfor %}
-
-                </tbody>
-            </table>
-        </div>
-        {% endif %}
-    </div>
-    {% if error_message %}
-    <p class="error-message">{{ error_message }}</p>
-    {% endif %}
 
 
 

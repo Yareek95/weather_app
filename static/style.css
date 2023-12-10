@@ -1,7 +1,5 @@
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
     background-color:black;
     background-image:
         radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
@@ -18,7 +16,6 @@ body {
     font-size: 15px;
     color: #3faa88;
     width: 100%;
-
 }
 
 .center-div {
@@ -34,7 +31,7 @@ body {
 
 .center-div-register {
     text-align: center;
-    margin-top: 110px; /* Adjust the margin based on your layout */
+    margin-top: 170px; /* Adjust the margin based on your layout */
     width: 100%;
     color: #3faa88;
 
@@ -57,33 +54,28 @@ input {
     box-sizing: border-box;
 }
 
-button:hover {
-    background-color: #45a049;
-}
-
 .error-message {
     color: #ff0000;
     margin-top: 10px;
 }
 
-p a button img {
-    width: 30px;
+button img {
+    width: 35px;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 button {
-    padding: 10px;
-    background-color: #78419d;
-    color: #fff;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
-    border-radius: 4px;
+    background-color: #8e309d;
+    border-radius: 10px;
 }
 
 .body-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 255px;
+    margin-top: 270px;
 }
 
 .weather-info {
@@ -147,11 +139,7 @@ button {
     width: 30px;
 }
 
-.connect-text button {
-    /* Add any additional styling for your button */
-}
-
-.header-pages {
+.header-background {
     height: 80px;
     position: fixed;
     top: 0px;
@@ -170,18 +158,11 @@ button {
     padding: 15px;
     border-image: repeating-linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89)) 20;
     border-image-slice: 480 2660 340 2660; /* Adjust as needed */
-    border-image-width: 30px 20% 20px 60px; /* Adjust as needed */
+    border-image-width: 30px 20% 25px 20%; /* Adjust as needed */
     border-image-outset: 10px 0px 10px 0px; /* Adjust as needed */
     border-image-repeat: stretch stretch; /* Adjust as needed */
     border-image-source: url("https://picjumbo.com/wp-content/uploads/ukraine-flag-in-ukrainian-nature-free-photo.jpg");
     border-style: solid;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.header-pages button {
-    margin-left: 100px; /* Adjust as needed */
 }
 
 .input-section {
@@ -202,8 +183,8 @@ button {
 }
 
 .input-section button {
-    width: 150px;
-    height: 30px;
+    width: 50px;
+    height: 50px;
     padding: 5px;
     margin-right: 5px;
     flex: 0 0 20%; /* 30% width, don't grow or shrink */
@@ -213,19 +194,39 @@ button {
     background-color: #29b930;
 }
 
-.currency-form {
-    top: 200px;
-    left: 0px;
-    width: 100%;
-    background-color: #868fd5; /* Change the background color to your preference */
-    padding: 50px; /* Adjust padding as needed for spacing */
-    text-align: left; /* Center the buttons horizontally */
-    font-size: 16px;
+.currency-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start of the cross axis */
+    margin-top: 180px;
+    color: #3faa88;
 }
 
-.currency-form button {
-    font-size: 10px; /* Adjust button font size */
-    width: 50px;
+.currency-form {
+    flex: 0 0 40%; /* 40% width, don't grow or shrink */
+    margin-right: 5%;  /* Adjust margin as needed */
+}
+
+.currency-info {
+    flex: 0 0 40%; /* 40% width, don't grow or shrink */
+    margin-left: 5%;  /* Adjust margin as needed */
+}
+
+.currency-choices script{
+    color: #3faa88; /* You can adjust the color as needed */
+}
+
+.currency-choices p {
+    color: #3faa88;
+}
+
+.currency-result {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #f9540dd5;
+    padding: 10px;
+    text-align: center;
 }
 
 .center-div-main {
@@ -234,5 +235,31 @@ button {
     font-size: 15px;
     color: #3faa88;
 
+}
+
+.header-buttons p a{
+    margin-left: 19.5%;
+
+}
+
+/* Autocomplete dropdown styling */
+.ui-autocomplete {
+    background-color: #131313;
+    font-size: medium;
+    color: #0033CC;
+    max-width: 35%;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc; /* Add a border for a cleaner look */
+}
+
+.ui-menu-item {
+    padding: 8px;
+    cursor: pointer;
+    /* Add other styling properties as needed */
+}
+
+.ui-menu-item:hover {
+    background-color: #e6f7ff; /* Change the background color on hover */
 }
 
