@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>About</title>
+</head>
+
+<body>
+    <div class="header-background header-buttons">
+        {% if 'username' in session %}
+            <p><a href="{{ url_for('logout') }}"><button>
+                    <img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
+                </a>
+                <a href="{{ url_for('index') }}"><button>
+                    <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
+                </a>
+                <a href="{{ url_for('dashboard') }}">
+                    <button><img src="{{ url_for('static', filename='link-icons/book-atlas-solid.svg') }}" alt=book-atlas-solid.svg></button>
+                </a>
+            </p>
+        {% else %}
+            <p><a href="{{ url_for('login') }}"><button>
+                    <img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg></button>
+                </a>
+                <a href="{{ url_for('register') }}">
+                    <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}" alt=registration.svg></button>
+                </a>
+                <a href="{{ url_for('index') }}"><button>
+                    <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
+                </a>
+            </p>
+        {% endif %}
+    </div>
+    <div class="content-about">
+        <h2>Content "About"</h2>
+        <p>App does`t store any personal data.</p>
+        <p>DB implemented for... saving users settings...</p>
+        <p>You have to be logged in to get access to Dashboard Page</p>
+        <p>Dashboard Page includes all functionalities available</p>
+        <p>Registration does`t require email verification</p>
+        <p>Please use your Nickname as username while registration</p>
+        <p>Use simple password while registration (ex."1234" or "000")</p>
+        <p>From Dash Board you can access : Currency converter with 150+ currencies, Current weather da0a and weather forecast for 4+ days </p>
+        <p style="font-size: 10px;">12.07.2023</p>
+        <p class="connect-text">To contribute to the next release, please contact
+            <a href="https://www.linkedin.com/in/yaroslav-ovsiienko">
+                <img src="{{ url_for('static', filename='link-icons/linkedin.svg') }}" alt=linkedin.svg>
+            </a>
+        </p>
+     </div>
+</body>
+
+</html>

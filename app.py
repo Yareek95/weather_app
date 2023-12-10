@@ -4,26 +4,24 @@ from flask_pymongo import PyMongo
 from flask_bcrypt import Bcrypt
 import requests
 import secrets
+from dotenv import load_dotenv
 
+load_dotenv()  # Load environment variables from .env file
 app = Flask(__name__)
-
 app.secret_key = secrets.token_hex(16)
 
 FIRST_API_BASE_URL = "https://api.weatherapi.com/v1/current.json"  # base weather
 SECOND_API_BASE_URL = "https://www.amdoren.com/api/weather.php"  # forecast weather
 CURRENCY_API_BASE_URL = "https://www.amdoren.com/api/currency.php"  # currency
 
-FIRST_API_KEY = "489b3e24494946a89ca63057231911"
+FIRST_API_KEY = os.environ.get("FIRST_API_KEY")
 # SECOND and CURRENCY have the same KEY:
-SECOND_API_KEY = "RSHPS94EemhCEY7QNBfQundpqnUtVk"
+SECOND_API_KEY = os.environ.get("SECOND_API_KEY")
+MONGO_DB_PASSWORD = os.environ.get("MONGO_DB_PASSWORD")
 
-app.config['MONGO_URI'] = "mongodb+srv://Yarik:sUh9HQyUiye6baoG@login.wrtuhbw.mongodb.net/weather-app"
+app.config['MONGO_URI'] = f"mongodb+srv://Yarik:{MONGO_DB_PASSWORD}@login.wrtuhbw.mongodb.net/weather-app"
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
-
-
-# sUh9HQyUiye6baoG - mongodb password
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -110,7 +108,14 @@ def register():
     print(mongo.db)  # Add this line to check the value of mongo.db
     if request.method == 'POST':
         username = request.form['username']
-        password = bcrypt.generate_password_hash(request.form['password']).decode('utf-8')
+        password = request.form['password']
+        confirm_password = request.form['confirm_password']
+
+        # Check if the password and confirm password match
+        if password != confirm_password:
+            return render_template('register.html', error_message='Password and confirm password do not match.')
+
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
         # Check if the username already exists
         existing_user = mongo.db.users.find_one({'username': username})
@@ -118,10 +123,11 @@ def register():
             return render_template('register.html', error_message='Username already exists. Choose another.')
 
         # Insert new user into MongoDB
-        mongo.db.users.insert_one({'username': username, 'password': password})
+        mongo.db.users.insert_one({'username': username, 'password': hashed_password})
         return redirect(url_for('login'))
 
     return render_template('register.html')
+
 
 # Login route
 @app.route('/login', methods=['GET', 'POST'])
@@ -152,16 +158,20 @@ def dashboard():
         return render_template('dashboard.html', username=session['username'])
     return redirect(url_for('login'))
 
+
+@app.route('/about')
+def about():
+    username = session.get('username')
+    return render_template('about.html', username=username)
+
+
 '''
+    *** test ***
+if __name__ == '__main__':
+    app.run(debug=True)
+  '''
+
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-
-
-
-    *** test ***
-
-  '''
-if __name__ == '__main__':
-    app.run(debug=True)

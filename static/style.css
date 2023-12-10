@@ -1,44 +1,105 @@
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f0f0f0;
+    background-color:black;
+    background-image:
+        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
+        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
+        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+}
+
+.content-about {
+    text-align: left;
+    margin-top: 170px;
+    font-size: 15px;
+    color: #3faa88;
+    width: 100%;
 }
 
 .center-div {
     text-align: center;
-    margin-top: 250px;
+    margin-top: 150px;
+    color: #3faa88;
+}
+.center-div input{
+    text-align: center;
+    margin-top: 5px;
+    font-size: 10px;
 }
 
-button {
-    padding: 10px;
-    background-color: #3498db;
-    color: #fff;
-    border: none;
-    text-decoration: none;
-    cursor: pointer;
+.center-div-register {
+    text-align: center;
+    margin-top: 170px; /* Adjust the margin based on your layout */
+    width: 100%;
+    color: #3faa88;
+
+}
+
+form {
+    max-width: 150px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.error-message {
+    color: #ff0000;
+    margin-top: 10px;
+}
+
+button img {
+    width: 35px;
 }
 
 button:hover {
-    background-color: #2980b9;
+    background-color: #45a049;
+}
+
+button {
+    background-color: #8e309d;
+    border-radius: 10px;
+}
+
+.body-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20%;
 }
 
 .weather-info {
-    margin-top: 20px;
-    text-align: center;
+    flex: 0 0 20%; /* 30% width, don't grow or shrink */
+    margin-right: 5%;  /*Adjust margin as needed */
+}
+
+.weather-info p {
+    color: #3faa88;
 }
 
 .forecast-table-container {
-    margin-top: 20px;
+    flex: 0 0 70%; /* 70% width, don't grow or shrink */
 }
 
+
 .forecast-table {
-    width: 100%;
+    width: 70%;
     border-collapse: collapse;
 }
 
-.forecast-table th, .forecast-table td {
+.forecast-table td {
     border: 1px solid #ddd;
+    color: #991aa7;
     padding: 8px;
     text-align: center;
 }
@@ -58,3 +119,147 @@ button:hover {
     text-align: center;
     margin-top: 20px;
 }
+
+/* Add your existing styles */
+
+.connect-text {
+    text-align: center;
+    margin-bottom: 20px; /* Adjust margin as needed */
+    font-size: 16px;
+}
+
+.connect-text a {
+    text-decoration: none;
+    color: #c4c3d7; /* Adjust color as needed */
+}
+
+.connect-text img {
+    font-size: 20px; /* Adjust icon size as needed */
+    margin-left: 10px; /* Add margin between the icon and text */
+    width: 30px;
+}
+
+.header-background {
+    height: 80px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    background:
+        linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
+        linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
+        linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
+        linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
+        linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
+        linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
+    background-color: #131313;
+    background-size: 20px 20px;
+    border: 15px solid;
+    padding: 15px;
+    border-image: repeating-linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89)) 20;
+    border-image-slice: 480 2660 340 2660; /* Adjust as needed */
+    border-image-width: 30px 20% 25px 20%; /* Adjust as needed */
+    border-image-outset: 10px 0px 10px 0px; /* Adjust as needed */
+    border-image-repeat: stretch stretch; /* Adjust as needed */
+    border-image-source: url("https://picjumbo.com/wp-content/uploads/ukraine-flag-in-ukrainian-nature-free-photo.jpg");
+    border-style: solid;
+}
+
+.input-section {
+    position: fixed;
+    top: 149px;
+    width: 100%;
+    padding: 5px; /* Adjust padding as needed for spacing */
+    display: flex;
+    justify-content: space-between; /* Add this to space items evenly */
+}
+
+.input-section input {
+    width: 150px;
+    height: 30px;
+    padding: 5px;
+    flex: 0 0 30%; /* 30% width, don't grow or shrink */
+    margin-right: 5px;  /*Adjust margin as needed */
+}
+
+.input-section button {
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    margin-right: 5px;
+    flex: 0 0 20%; /* 30% width, don't grow or shrink */
+}
+
+.input-section button:hover {
+    background-color: #29b930;
+}
+
+.currency-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start of the cross axis */
+    margin-top: 180px;
+    color: #3faa88;
+}
+
+.currency-form {
+    flex: 0 0 40%; /* 40% width, don't grow or shrink */
+    margin-right: 5%;  /* Adjust margin as needed */
+}
+
+.currency-info {
+    flex: 0 0 40%; /* 40% width, don't grow or shrink */
+    margin-left: 5%;  /* Adjust margin as needed */
+}
+
+.currency-choices script{
+    color: #3faa88; /* You can adjust the color as needed */
+}
+
+.currency-choices p {
+    color: #3faa88;
+}
+
+.currency-result {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: #f9540dd5;
+    padding: 10px;
+    text-align: center;
+}
+
+.center-div-main {
+    text-align: center;
+    margin-top: 250px;
+    font-size: 15px;
+    color: #3faa88;
+
+}
+
+.header-buttons p a{
+    margin-left: 19.5%;
+
+}
+
+/* Autocomplete dropdown styling */
+.ui-autocomplete {
+    background-color: #131313;
+    font-size: medium;
+    color: #0033CC;
+    max-width: 35%;
+    max-height: 150px;
+    overflow-y: auto;
+    border: 1px solid #ccc; /* Add a border for a cleaner look */
+}
+
+.ui-menu-item {
+    padding: 8px;
+    cursor: pointer;
+    /* Add other styling properties as needed */
+}
+
+.ui-menu-item:hover {
+    background-color: #e6f7ff; /* Change the background color on hover */
+}
+

@@ -9,8 +9,32 @@
 </head>
 
 <body>
-    <div class="center-div">
-        <h2>Register</h2>
+    <div class="header-background header-buttons">
+    {% if 'username' in session %}
+        <p><a href="{{ url_for('index') }}"><button>
+                <img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
+            </a>
+            <a href="{{ url_for('index') }}"><button>
+                <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
+            </a>
+            <a href="{{ url_for('dashboard') }}"><button>Dashboard</button></a>
+            <a href="{{ url_for('about') }}"><button>About</button></a>
+        </p>
+    {% else %}
+        <p><a href="{{ url_for('login') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg>
+                </button>
+            </a>
+            <a href="{{ url_for('about') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button></a>
+            <a href="{{ url_for('index') }}"><button>
+                <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
+            </a>
+        </p>
+    {% endif %}
+    </div>
+    <div class="center-div-register">
+        <h2>Registration</h2>
         <form method="post">
             <label for="username">Username:</label>
             <input type="text" id="username" name="username" required>
@@ -18,7 +42,10 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <br>
-            <button type="submit">Register</button>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required>
+            <br>
+            <button type="submit"><img src="{{ url_for('static', filename='link-icons/circle-check-solid.svg') }}" alt=circle-check-solid.svg></button>
         </form>
         {% if error_message %}
             <p class="error-message">{{ error_message }}</p>

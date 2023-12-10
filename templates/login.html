@@ -9,6 +9,33 @@
 </head>
 
 <body>
+    <h2>Login</h2>
+    <div class="header-background header-buttons">
+    {% if 'username' in session %}
+        <p><a href="{{ url_for('index') }}"><button>
+                <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
+            </a>
+            <a href="{{ url_for('dashboard') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/book-atlas-solid.svg') }}" alt=book-atlas-solid.svg></button>
+            </a>
+            <a href="{{ url_for('about') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button>
+            </a>
+        </p>
+    {% else %}
+        <p>
+            <a href="{{ url_for('register') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}" alt=registration.svg></button>
+            </a>
+            <a href="{{ url_for('about') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button>
+            </a>
+            <a href="{{ url_for('index') }}"><button>
+                <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
+            </a>
+        </p>
+    {% endif %}
+    </div>
     <div class="center-div">
         <h2>Login</h2>
         <form method="post">
@@ -18,7 +45,7 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
             <br>
-            <button type="submit">Login</button>
+            <button type="submit"><img src="{{ url_for('static', filename='link-icons/circle-check-solid.svg') }}" alt=circle-check-solid.svg></button>
         </form>
         {% if error_message %}
             <p class="error-message">{{ error_message }}</p>
