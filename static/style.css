@@ -75,7 +75,7 @@ button {
 .body-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 270px;
+    margin-top: 20%;
 }
 
 .weather-info {
@@ -88,12 +88,12 @@ button {
 }
 
 .forecast-table-container {
-    flex: 0 0 75%; /* 70% width, don't grow or shrink */
+    flex: 0 0 70%; /* 70% width, don't grow or shrink */
 }
 
 
 .forecast-table {
-    width: 100%;
+    width: 70%;
     border-collapse: collapse;
 }
 
