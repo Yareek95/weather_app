@@ -11,11 +11,11 @@
 <body>
     <div class="header-background header-buttons">
     {% if 'username' in session %}
-        <p><a href="{{ url_for('logout') }}"><button>
-                <img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
+        <p><a href="{{ url_for('logout') }}">
+            <button><img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
             </a>
-            <a href="{{ url_for('index') }}"><button>
-                <img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
+            <a href="{{ url_for('index') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
             </a>
             <a href="{{ url_for('about') }}">
                 <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button>

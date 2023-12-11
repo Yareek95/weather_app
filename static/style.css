@@ -68,7 +68,7 @@ button:hover {
 }
 
 button {
-    background-color: #8e309d;
+    background-color: #ffffff6b;
     border-radius: 10px;
 }
 
@@ -90,7 +90,6 @@ button {
 .forecast-table-container {
     flex: 0 0 70%; /* 70% width, don't grow or shrink */
 }
-
 
 .forecast-table {
     width: 70%;
@@ -237,20 +236,21 @@ button {
 
 }
 
-.header-buttons p a{
-    margin-left: 19.5%;
+.header-buttons {
+    display: flex;
+    justify-content: center;
 
 }
 
 /* Autocomplete dropdown styling */
 .ui-autocomplete {
-    background-color: #131313;
+    background-color: #000000;
     font-size: medium;
-    color: #0033CC;
+    color: #04ba0e;
     max-width: 35%;
     max-height: 150px;
     overflow-y: auto;
-    border: 1px solid #ccc; /* Add a border for a cleaner look */
+    border: 3px solid #ffffff76; /* Add a border for a cleaner look */
 }
 
 .ui-menu-item {
@@ -260,6 +260,6 @@ button {
 }
 
 .ui-menu-item:hover {
-    background-color: #e6f7ff; /* Change the background color on hover */
+    background-color: #e32c2c74; /* Change the background color on hover */
 }
 
