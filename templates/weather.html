@@ -20,7 +20,7 @@
                 <a href="{{ url_for('dashboard') }}">
                     <button><img src="{{ url_for('static', filename='link-icons/book-atlas-solid.svg') }}" alt=book-atlas-solid.svg></button>
                 </a>
-            </p>
+            </p
         {% else %}
             <p><a href="{{ url_for('login') }}">
                 <button><img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg></button>
@@ -43,33 +43,49 @@
                     <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
                 </button>
             </form>
-        </div>
-            <div class="body-container">
             {% if weather_data %}
-                <div class="weather-info">
-                    {% if weather_data.current.is_day == 0 %}
-                        {% if second_api_data %}
-                            <p>{{ weather_data.current.condition.text }} Night in {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
-                        {% endif %}
-
-                    {% elif weather_data.current.is_day == 1 %}
-                        {% if second_api_data %}
-                            <p>{{ weather_data.current.condition.text }} Day in {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
-                        {% endif %}
-                    {% endif %}
-                    <p>Local time is: {{ weather_data.location.localtime }}</p>
-                    <p>Temperature: {{ weather_data.current.temp_c }}°C ({{ weather_data.current.temp_f }}°F)</p>
-                    <p>Feels like: {{ weather_data.current.feelslike_c }}°C ({{ weather_data.current.feelslike_f }}°F)</p>
-                    <p>Wind: {{ weather_data.current.wind_kph }} km/h, {{ weather_data.current.wind_mph }} mi/h, {{ weather_data.current.wind_dir }}</p>
-                    <p>Pressure: {{ weather_data.current.pressure_mb }} mb; {{ weather_data.current.pressure_in }} in</p>
-                    <p>Humidity: {{ weather_data.current.humidity }}</p>
-                    <p>Cloud: {{ weather_data.current.cloud }}</p>
-                    <p>Visibility: {{ weather_data.current.vis_miles }} miles ; {{ weather_data.current.vis_km }} km</p>
-                    <p>Gust: {{ weather_data.current.gust_mph }} mph ; {{ weather_data.current.gust_kph }} kph</p>
-                    <p>Precipitation: {{ weather_data.current.precip_in }} inches ; {{ weather_data.current.precip_mm }} mm</p>
-                </div>
-            
-
+            <div class="weather-info-table">
+                {% if second_api_data %}
+                    {% set time_of_day = 'Day' if weather_data.current.is_day == 1 else 'Night' %}
+                    <p>{{ weather_data.location.localtime }} and {{ weather_data.current.condition.text }} {{ time_of_day }} in 
+                        {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
+                {% endif %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Temp</th>
+                            <th>Feels</th>
+                            <th>Wind</th>
+                            <th>Pressure</th>
+                            <th>Visibility</th>
+                            <th>Gust</th>
+                            <th>Precipitation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ weather_data.current.temp_c }}°C</td>
+                            <td>{{ weather_data.current.feelslike_c }}°C</td>
+                            <td>{{ weather_data.current.wind_kph }} km/h</td>
+                            <td>{{ weather_data.current.pressure_mb }} mb</td>
+                            <td>{{ weather_data.current.vis_km }} km</td>
+                            <td>{{ weather_data.current.gust_kph }} kph</td>
+                            <td>{{ weather_data.current.precip_mm }} mm</td>
+                        </tr>
+                        <tr>
+                            <td>{{ weather_data.current.temp_f }}°F</td>
+                            <td>{{ weather_data.current.feelslike_f }}°F</td>
+                            <td>{{ weather_data.current.wind_mph }} mi/h</td>
+                            <td>{{ weather_data.current.pressure_in }} in</td>
+                            <td>{{ weather_data.current.vis_miles }} miles</td>
+                            <td>{{ weather_data.current.gust_mph }} mph</td>
+                            <td>{{ weather_data.current.precip_in }} inches</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Wind Direction: {{ weather_data.current.wind_dir }}, Humidity: {{ weather_data.current.humidity }}, Cloudy: {{ weather_data.current.cloud }}</p>
+            </div>
+        </div>
             <div class="forecast-table-container">
                 <table class="forecast-table">
                     <thead>

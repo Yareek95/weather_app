@@ -72,27 +72,21 @@ button {
     border-radius: 10px;
 }
 
-.body-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 270px;
-}
-
-.weather-info {
-    flex: 0 0 20%; /* 30% width, don't grow or shrink */
+.weather-info-table {
+    flex: 0 0 70%; /* 30% width, don't grow or shrink */
     margin-right: 5%;  /*Adjust margin as needed */
-}
-
-.weather-info p {
     color: #3faa88;
 }
 
 .forecast-table-container {
-    flex: 0 0 70%; /* 70% width, don't grow or shrink */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 330px;
+    flex: 0 0 80%; /* 70% width, don't grow or shrink */
 }
 
 .forecast-table {
-    width: 70%;
+    width: 80%;
     border-collapse: collapse;
 }
 
@@ -173,24 +167,16 @@ button {
     justify-content: space-between; /* Add this to space items evenly */
 }
 
+.input-section button{
+    margin-left: 30%;
+}
+
 .input-section input {
     width: 150px;
     height: 30px;
     padding: 5px;
     flex: 0 0 30%; /* 30% width, don't grow or shrink */
     margin-right: 5px;  /*Adjust margin as needed */
-}
-
-.input-section button {
-    width: 50px;
-    height: 50px;
-    padding: 5px;
-    margin-right: 5px;
-    flex: 0 0 20%; /* 30% width, don't grow or shrink */
-}
-
-.input-section button:hover {
-    background-color: #29b930;
 }
 
 .currency-container {
@@ -262,4 +248,3 @@ button {
 .ui-menu-item:hover {
     background-color: #e32c2c74; /* Change the background color on hover */
 }
-
