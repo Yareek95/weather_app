@@ -20,7 +20,7 @@
                 <a href="{{ url_for('dashboard') }}">
                     <button><img src="{{ url_for('static', filename='link-icons/book-atlas-solid.svg') }}" alt=book-atlas-solid.svg></button>
                 </a>
-            </p
+            </p>
         {% else %}
             <p><a href="{{ url_for('login') }}">
                 <button><img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg></button>
@@ -35,7 +35,8 @@
             </p>
         {% endif %}
     </div>
-        <div class="input-section">
+    <div class="input-section">
+        <div class="input-section-input">
             <form id="weatherForm" action="/weather" method="post">
                 <label for="user_input"></label>
                 <input type="text" id="user_input" name="user_input" placeholder="City Name or Zip Code" required>
@@ -43,8 +44,9 @@
                     <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
                 </button>
             </form>
+        </div>
+        <div class="weather-info-table">
             {% if weather_data %}
-            <div class="weather-info-table">
                 {% if second_api_data %}
                     {% set time_of_day = 'Day' if weather_data.current.is_day == 1 else 'Night' %}
                     <p>{{ weather_data.location.localtime }} and {{ weather_data.current.condition.text }} {{ time_of_day }} in 
@@ -61,7 +63,7 @@
                             <th>Gust</th>
                             <th>Precipitation</th>
                         </tr>
-                    </thead>
+                     </thead>
                     <tbody>
                         <tr>
                             <td>{{ weather_data.current.temp_c }}°C</td>
@@ -84,24 +86,23 @@
                     </tbody>
                 </table>
                 <p>Wind Direction: {{ weather_data.current.wind_dir }}, Humidity: {{ weather_data.current.humidity }}, Cloudy: {{ weather_data.current.cloud }}</p>
-            </div>
-        </div>
-            <div class="forecast-table-container">
-                <table class="forecast-table">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Avg C</th>
-                            <th>Min C</th>
-                            <th>Max C</th>
-                            <th>Avg F</th>
-                            <th>Min F</th>
-                            <th>Max F</th>
-                            <th>Summary</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
+        </div>    
+    </div>
+        <div class="forecast-table-container">
+            <table class="forecast-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Avg C</th>
+                        <th>Min C</th>
+                        <th>Max C</th>
+                        <th>Avg F</th>
+                        <th>Min F</th>
+                        <th>Max F</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
                     {% for day in second_api_data.forecast %}
                         <tr>
                             <td>{{ day.date }}</td>
@@ -114,16 +115,13 @@
                             <td>{{ day.summary }}<img src="{{ url_for('static', filename='weather-icons/' + day.icon) }}" alt=f"{{day.icon}}"></td>
                         </tr>
                     {% endfor %}
-
-                    </tbody>
-                </table>
-            </div>
-            {% endif %}
-
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
             {% if error_message %}
             <p class="error-message">{{ error_message }}</p>
             {% endif %}
-        </div>
 
 
 

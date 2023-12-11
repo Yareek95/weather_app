@@ -244,9 +244,9 @@
   </div>
   <div class="currency-result">
     {% if currency_data %}
-    <h2>You can sell {{user_input_amount}} {{user_input_currency_1}} for {{ currency_data.amount }}
+    <h2>For {{user_input_amount}} {{user_input_currency_1}} you get {{ currency_data.amount }}
       {{user_input_currency_2}}</h2>
-    <p>Result showing "sell" (less) value from the currency market</p>
+    <p>Showing "sell" (less) value of currency market</p>
     {% endif %}
     {% if error_message %}
       <p>{{ error_message }}</p>

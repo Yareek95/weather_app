@@ -18,15 +18,22 @@ body {
     width: 100%;
 }
 
-.center-div {
+.center-div-dashboard {
     text-align: center;
-    margin-top: 150px;
+    margin-top: 170px;
     color: #3faa88;
 }
 .center-div input{
     text-align: center;
     margin-top: 5px;
     font-size: 10px;
+}
+
+.center-div-login {
+    text-align: center;
+    margin-top: 170px; /* Adjust the margin based on your layout */
+    width: 100%;
+    color: #3faa88;
 }
 
 .center-div-register {
@@ -81,8 +88,8 @@ button {
 .forecast-table-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 330px;
-    flex: 0 0 80%; /* 70% width, don't grow or shrink */
+    margin-top: 370px;
+    flex: 0 0 100%; /* 70% width, don't grow or shrink */
 }
 
 .forecast-table {
@@ -98,7 +105,7 @@ button {
 }
 
 .forecast-table th {
-    background-color: #3498db;
+    background-color: #3498dba8;
     color: #fff;
 }
 
@@ -167,8 +174,8 @@ button {
     justify-content: space-between; /* Add this to space items evenly */
 }
 
-.input-section button{
-    margin-left: 30%;
+.input-section-input {
+    margin-left: 5%;
 }
 
 .input-section input {
