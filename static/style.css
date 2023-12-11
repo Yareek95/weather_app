@@ -75,7 +75,7 @@ button {
 .body-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20%;
+    margin-top: 270px;
 }
 
 .weather-info {
