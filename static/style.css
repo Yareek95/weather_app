@@ -1,7 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
     background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(14,20,51,1) 100%);
-    color: #3faa88;
 }
 
 .about {
@@ -51,12 +50,9 @@ input {
 }
 
 button img {
+    width: 35px;
     vertical-align: middle;
     margin-right: 5px;
-}
-
-button:hover {
-       background-color: #b3b5e3;
 }
 
 button {
@@ -64,7 +60,13 @@ button {
     border-radius: 10px;
     transition: 0.3s;
     padding: 5px 10px;
- margin: 0px 0px 10px 0px
+    margin: 0px 0px 10px 0px
+}
+
+button:hover {
+       background-color: #ffffffe7;
+       transform: scale(1.1); /* You can adjust the scaling factor as needed */
+       transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
 }
 
 .weather-info-table {
