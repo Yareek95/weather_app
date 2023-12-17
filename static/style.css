@@ -51,16 +51,20 @@ input {
 }
 
 button img {
-    width: 35px;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 button:hover {
-    background-color: #45a049;
+       background-color: #b3b5e3;
 }
 
 button {
-    background-color: #ffffff6b;
+    background-color: #ffffff;
     border-radius: 10px;
+    transition: 0.3s;
+    padding: 5px 10px;
+ margin: 0px 0px 10px 0px
 }
 
 .weather-info-table {
@@ -152,9 +156,9 @@ button {
 }
 
 .header-buttons a {
-    margin-left: 25px; /* Add margin between the icon and text */
-    width: 100%;
+    margin: 0px 10px 0px 0px;
     text-decoration: none;
+    display: inline-block;
 }
 
 /* Autocomplete dropdown styling */
