@@ -44,39 +44,42 @@
             </button>
         </div>
     </div>
-<script type="text/javascript">
-    var socketio = io();
 
-    const messages = document.getElementById("messages");
-
-    const createMessage = (name, msg) => {
-        const content = `
-        <div class="text">
-            <span>
-                <strong>${name}</strong>: ${msg}
-            </span>
-            <span class="muted">
-                ${new Date().toLocaleString()}
-            </span>
-        </div>`;
-        messages.innerHTML += content;
-    };
-
-    socketio.on("message", (data) => {
-        createMessage(data.name, data.message)
-    });
-
-    const sendMessage = () => {
-        const message = document.getElementById("message")
-        if (message.value == "") return;
-        socketio.emit("message", {data: message.value})
-        message.value = "";
-    };
-</script>
-{% for msg in messages %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.1.3/socket.io.js"></script>
     <script type="text/javascript">
-        createMessage("{{msg.name}}", "{{msg.message}}");
+        var socketio = io();
+
+        const messages = document.getElementById("messages");
+
+        const createMessage = (name, msg) => {
+            const content = `
+            <div class="text">
+                <span>
+                    <strong>${name}</strong>: ${msg}
+                </span>
+                <span class="muted">
+                    ${new Date().toLocaleString()}
+                </span>
+            </div>`;
+            messages.innerHTML += content;
+        };
+
+        socketio.on("message", (data) => {
+            createMessage(data.name, data.message);
+        });
+
+        const sendMessage = () => {
+            const message = document.getElementById("message");
+            if (message.value === "") return;
+            socketio.emit("message", {data: message.value});
+            message.value = "";
+        };
     </script>
-{% endfor %}
+
+    {% for msg in messages %}
+        <script type="text/javascript">
+            createMessage("{{msg.name}}", "{{msg.message}}");
+        </script>
+    {% endfor %}
 </body>
 </html>

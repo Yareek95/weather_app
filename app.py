@@ -56,10 +56,10 @@ def chat():
         if not name:
             return render_template("chat.html", error="Please enter a name", code=code, name=name)
 
-        if join != False and not code:
+        if join is not False and not code:
             return render_template("chat.html", error="Please enter a room code", code=code, name=name)
         room = code
-        if create != False:
+        if create is not False:
             room = generate_unique_code(4)
             rooms[room] = {"members": 0, "messages": []}
         elif code not in rooms:
@@ -267,15 +267,6 @@ def about():
     username = session.get('username')
     return render_template('about.html', username=username)
 
-@socketio.on('message')
-def handle_message(data):
-    username = session.get('username', 'Guest')
-    message = {'username': username, 'message': data['message']}
-    mongo.db.chat_messages.insert_one(message)
-    emit('message', message, broadcast=True)
-
-
-
 '''
 
     
@@ -284,8 +275,8 @@ def handle_message(data):
     if __name__ == '__main__':
     app.run(debug=True)
     *** test ***
-if __name__ == '__main__':
-    socketio.run(app, debug=True, use_reloader=False)
+if __name__ == "__main__":
+    socketio.run(app, debug=True, port=5000)
   '''
 
 if __name__ == '__main__':
