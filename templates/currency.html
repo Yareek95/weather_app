@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  <div class="header-background header-buttons">
+  <div class="header-buttons">
   {% if 'username' in session %}
       <p><a href="{{ url_for('logout') }}"><button>
               <img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
@@ -52,11 +52,6 @@
             <input type="text" id="user_input_amount" name="user_input_amount">
             <button type="submit"><img src="{{ url_for('static', filename='link-icons/money-bill-transfer-solid.svg') }}" alt=money-bill-transfer-solid.svg></button>
         </form>
-    </div>
-    <div class="currency-info">
-      <p>Available 150 currency market options</p>
-        <p>Start typing currency Key (ex:"USD")</p>
-        <p>You can type country name and choose one of suggested options</p>
     </div>
     <div class="currency-choices">
       <script>

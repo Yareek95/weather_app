@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <title>Daily Notes</title>
+    <title>PB-Notes</title>
 </head>
 
 <body>
-    <div class="header-background header-buttons">
+    <div class="header-buttons">
     {% if 'username' in session %}
         <p><a href="{{ url_for('logout') }}">
                 <button><img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
@@ -39,12 +39,11 @@
         <p></p>
     </div>
     <div class="center-div-main">
-        <p class="connect-text">Share your ideas
+        <p>Share your ideas
             <a href="https://www.linkedin.com/in/yaroslav-ovsiienko">
                 <img src="{{ url_for('static', filename='link-icons/linkedin.svg') }}" alt=linkedin.svg>
             </a>
         </p>
     </div>
-
 </body>
 </html>

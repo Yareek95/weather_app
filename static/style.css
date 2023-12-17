@@ -1,52 +1,36 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color:black;
-    background-image:
-        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
-        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
-        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-}
-
-.content-about {
-    text-align: left;
-    margin-top: 170px;
-    font-size: 15px;
-    color: #3faa88;
-    width: 100%;
-}
-
-.center-div-dashboard {
-    text-align: center;
-    margin-top: 170px;
+    background: #070707;
     color: #3faa88;
 }
-.center-div input{
-    text-align: center;
-    margin-top: 5px;
-    font-size: 10px;
+
+.about {
+    margin-left: 10px;
+    margin-top: 100px;
+}
+
+.dashboard {
+    margin-top: 170px;
 }
 
 .center-div-login {
     text-align: center;
-    margin-top: 170px; /* Adjust the margin based on your layout */
-    width: 100%;
-    color: #3faa88;
+    margin: 0 auto;
+    margin-top: 100px; /* Adjust the margin based on your layout */
+    max-width: 200px;
 }
 
 .center-div-register {
+    margin: 0 auto;
     text-align: center;
-    margin-top: 170px; /* Adjust the margin based on your layout */
-    width: 100%;
-    color: #3faa88;
-
+    margin-top: 150px; /* Adjust the margin based on your layout */
+    max-width: 200px;
 }
 
-form {
-    max-width: 150px;
+.chat-form {
     margin: 0 auto;
+    margin-top: 250px;
+    max-width: 200px;
 }
 
 label {
@@ -80,33 +64,22 @@ button {
 }
 
 .weather-info-table {
-    flex: 0 0 70%; /* 30% width, don't grow or shrink */
-    margin-right: 5%;  /*Adjust margin as needed */
-    color: #3faa88;
-}
-
-.forecast-table-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 370px;
-    flex: 0 0 100%; /* 70% width, don't grow or shrink */
+    width: 100%;
 }
 
 .forecast-table {
-    width: 80%;
+    color: #fff;
     border-collapse: collapse;
 }
 
 .forecast-table td {
     border: 1px solid #ddd;
-    color: #991aa7;
     padding: 8px;
     text-align: center;
 }
 
 .forecast-table th {
-    background-color: #3498dba8;
-    color: #fff;
+    border: 1px solid #ddd;
 }
 
 .forecast-table img {
@@ -120,83 +93,30 @@ button {
     margin-top: 20px;
 }
 
-/* Add your existing styles */
-
-.connect-text {
-    text-align: center;
-    margin-bottom: 20px; /* Adjust margin as needed */
-    font-size: 16px;
-}
-
-.connect-text a {
-    text-decoration: none;
-    color: #c4c3d7; /* Adjust color as needed */
-}
-
-.connect-text img {
-    font-size: 20px; /* Adjust icon size as needed */
+.content-about img {
     margin-left: 10px; /* Add margin between the icon and text */
-    width: 30px;
-}
-
-.header-background {
-    height: 80px;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    background:
-        linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
-        linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
-        linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
-        linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
-        linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
-        linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
-    background-color: #131313;
-    background-size: 20px 20px;
-    border: 15px solid;
-    padding: 15px;
-    border-image: repeating-linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89)) 20;
-    border-image-slice: 480 2660 340 2660; /* Adjust as needed */
-    border-image-width: 30px 20% 25px 20%; /* Adjust as needed */
-    border-image-outset: 10px 0px 10px 0px; /* Adjust as needed */
-    border-image-repeat: stretch stretch; /* Adjust as needed */
-    border-image-source: url("https://picjumbo.com/wp-content/uploads/ukraine-flag-in-ukrainian-nature-free-photo.jpg");
-    border-style: solid;
+    width: 25px;
 }
 
 .input-section {
-    position: fixed;
-    top: 149px;
-    width: 100%;
-    padding: 5px; /* Adjust padding as needed for spacing */
-    display: flex;
-    justify-content: space-between; /* Add this to space items evenly */
-}
-
-.input-section-input {
-    margin-left: 5%;
-}
-
-.input-section input {
-    width: 150px;
-    height: 30px;
-    padding: 5px;
-    flex: 0 0 30%; /* 30% width, don't grow or shrink */
-    margin-right: 5px;  /*Adjust margin as needed */
+    width: 155px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .currency-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Align items at the start of the cross axis */
-    margin-top: 180px;
+    margin-top: 100px;
     color: #3faa88;
 }
 
 .currency-form {
-    flex: 0 0 40%; /* 40% width, don't grow or shrink */
-    margin-right: 5%;  /* Adjust margin as needed */
+    max-width: 200px;
+    margin: 0 auto;
+    text-align: center;
+
 }
 
 .currency-info {
@@ -223,16 +143,17 @@ button {
 
 .center-div-main {
     text-align: center;
-    margin-top: 250px;
-    font-size: 15px;
-    color: #3faa88;
-
+    margin-top: 500px;
 }
 
 .header-buttons {
     display: flex;
     justify-content: center;
+}
 
+.header-buttons a {
+    margin-left: 25px; /* Add margin between the icon and text */
+    width: 100%;
 }
 
 /* Autocomplete dropdown styling */
@@ -254,4 +175,76 @@ button {
 
 .ui-menu-item:hover {
     background-color: #e32c2c74; /* Change the background color on hover */
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-chat {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.join {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.create-btn {
+    width: 100%;
+}
+
+.message-box {
+    margin-top: 210px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: stretch;
+}
+
+.messages {
+    overflow-y: scroll;
+    flex: 1;
+    width: 100%;
+}
+
+.inputs {
+    padding: 10px;
+    display: flex;
+}
+
+h2 {
+    text-align: center;
+}
+
+#message {
+    flex: 1;
+}
+
+.text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.muted {
+    font-size: 10px;
+    color: darkgray;
 }
