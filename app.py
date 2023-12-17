@@ -287,7 +287,9 @@ if __name__ == '__main__':
     if __name__ == '__main__':
     app.run(debug=True)
     *** test ***
-
-  '''
 if __name__ == '__main__':
     socketio.run(app, debug=True, use_reloader=False)
+  '''
+
+if __name__ == '__main__':
+    socketio.run(app, debug=False, use_reloader=False, port=int(os.environ.get("PORT", 5000)))
