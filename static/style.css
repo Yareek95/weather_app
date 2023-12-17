@@ -154,6 +154,7 @@ button {
 .header-buttons a {
     margin-left: 25px; /* Add margin between the icon and text */
     width: 100%;
+    text-decoration: none;
 }
 
 /* Autocomplete dropdown styling */
