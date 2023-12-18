@@ -46,15 +46,13 @@ def index():
 
 @app.route("/chat", methods=["POST", "GET"])
 def chat():
-    if 'username' in session:                   #try_1
+    if 'username' in session:
         # User is already logged in, use the 'username' from the session
-        #name = request.form.get("name")
         name = session['username']
         code = request.form.get("code")
         join = request.form.get("join", False)
         create = request.form.get("create", False)
-        #if not name:
-            #return render_template("chat.html", error="Please enter a name", code=code, name=name)
+
         if join is not False and not code:
             return render_template("chat.html", error="Please enter a room code", code=code, name=name)
         room = code
@@ -210,8 +208,19 @@ def currency():
 def register():
     print(mongo.db)  # Add this line to check the value of mongo.db
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].lower()     # Convert to lowercase
+
+        if not username[:2].isalpha():
+            return render_template('register.html', error_message='Username must start with at least 2 letters.')
+        if len(username) >= 8:
+            return render_template('register.html', error_message='Username must be less than 8 characters.')
+        if not all(char.isalnum() or char in ('_', '-') for char in username):
+            return render_template('register.html', error_message='Username can only contain letters, numbers, underscores, or hyphens.')
+
         password = request.form['password']
+
+        if len(password) <= 4:
+            return render_template('register.html', error_message='Password is too short.')
         confirm_password = request.form['confirm_password']
 
         # Check if the password and confirm password match
@@ -236,14 +245,17 @@ def register():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        username = request.form['username'].lower()     # Convert to lowercase
         password = request.form['password']
-
         # Check if the username exists
         existing_user = mongo.db.users.find_one({'username': username})
         if existing_user and bcrypt.check_password_hash(existing_user['password'], password):
             session['username'] = username
             return redirect(url_for('dashboard'))
+        if existing_user and not bcrypt.check_password_hash(existing_user['password'], password):
+            return render_template('login.html', error_message='Wrong Password')
+        if not existing_user:
+            return render_template('login.html', error_message='Wrong Username')
 
     return render_template('login.html')
 
@@ -276,7 +288,6 @@ def about():
 if __name__ == "__main__":
     socketio.run(app, debug=True, port=5000)
   '''
-
 
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000

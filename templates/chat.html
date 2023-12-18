@@ -37,7 +37,7 @@
 <form method="post" class="chat-form">
         <h3>Enter The Chat Room</h3>
         {% if 'username' in session %}
-            <label>Name: {{ name }}</label>
+            <label>Name: {{ name|capitalize }}</label>
             <div class="join">
                 <input type="text" placeholder="Room Code" name="code" value="{{ code }}"/>
                 <button type="submit" name="join">Join a Room</button>

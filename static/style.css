@@ -44,11 +44,6 @@ input {
     box-sizing: border-box;
 }
 
-.error-message {
-    color: #ff0000;
-    margin-top: 10px;
-}
-
 button img {
     width: 35px;
     vertical-align: middle;
@@ -96,6 +91,7 @@ button:hover {
     color: #e74c3c;
     text-align: center;
     margin-top: 20px;
+    font-weight: bold;
 }
 
 .content-about img {
