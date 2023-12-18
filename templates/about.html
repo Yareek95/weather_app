@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="header-background header-buttons">
+    <div class="header-buttons">
         {% if 'username' in session %}
             <p><a href="{{ url_for('logout') }}"><button>
                     <img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
@@ -34,7 +34,7 @@
             </p>
         {% endif %}
     </div>
-    <div class="content-about">
+    <div class="about">
         <h2>Content "About"</h2>
         <p>App does`t store any personal data.</p>
         <p>DB implemented for... saving users settings...</p>
@@ -43,9 +43,9 @@
         <p>Registration does`t require email verification</p>
         <p>Please use your Nickname as username while registration</p>
         <p>Use simple password while registration (ex."1234" or "000")</p>
-        <p>From Dash Board you can access : Currency converter with 150+ currencies, Current weather da0a and weather forecast for 4+ days </p>
+        <p>From Dash Board you can access : Currency converter with 150+ currencies, Current weather data and weather forecast for 4+ days </p>
         <p style="font-size: 10px;">12.07.2023</p>
-        <p class="connect-text">To contribute to the next release, please contact
+        <p>To contribute to the next release, please contact
             <a href="https://www.linkedin.com/in/yaroslav-ovsiienko">
                 <img src="{{ url_for('static', filename='link-icons/linkedin.svg') }}" alt=linkedin.svg>
             </a>

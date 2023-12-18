@@ -1,45 +1,35 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color:black;
-    background-image:
-        radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-        radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-        radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px),
-        radial-gradient(rgba(255,255,255,.4), rgba(255,255,255,.1) 2px, transparent 30px);
-        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+    background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(14,20,51,1) 100%);
 }
 
-.content-about {
-    text-align: left;
+.about {
+    margin-left: 10px;
+    margin-top: 100px;
+}
+
+.dashboard {
     margin-top: 170px;
-    font-size: 15px;
-    color: #3faa88;
-    width: 100%;
 }
 
-.center-div {
+.center-div-login {
     text-align: center;
-    margin-top: 150px;
-    color: #3faa88;
-}
-.center-div input{
-    text-align: center;
-    margin-top: 5px;
-    font-size: 10px;
+    margin: 0 auto;
+    margin-top: 100px; /* Adjust the margin based on your layout */
+    max-width: 200px;
 }
 
 .center-div-register {
+    margin: 0 auto;
     text-align: center;
-    margin-top: 170px; /* Adjust the margin based on your layout */
-    width: 100%;
-    color: #3faa88;
-
+    margin-top: 150px; /* Adjust the margin based on your layout */
+    max-width: 200px;
 }
 
-form {
-    max-width: 150px;
+.chat-form {
     margin: 0 auto;
+    margin-top: 250px;
+    max-width: 200px;
 }
 
 label {
@@ -61,52 +51,41 @@ input {
 
 button img {
     width: 35px;
-}
-
-button:hover {
-    background-color: #45a049;
+    vertical-align: middle;
+    margin-right: 5px;
 }
 
 button {
-    background-color: #8e309d;
+    background-color: #ffffff;
     border-radius: 10px;
+    transition: 0.3s;
+    padding: 5px 10px;
+    margin: 0px 0px 10px 0px
 }
 
-.body-container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20%;
+button:hover {
+       background-color: #ffffffe7;
+       transform: scale(1.1); /* You can adjust the scaling factor as needed */
+       transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
 }
 
-.weather-info {
-    flex: 0 0 20%; /* 30% width, don't grow or shrink */
-    margin-right: 5%;  /*Adjust margin as needed */
+.weather-info-table {
+    width: 100%;
 }
-
-.weather-info p {
-    color: #3faa88;
-}
-
-.forecast-table-container {
-    flex: 0 0 70%; /* 70% width, don't grow or shrink */
-}
-
 
 .forecast-table {
-    width: 70%;
+    color: #fff;
     border-collapse: collapse;
 }
 
 .forecast-table td {
     border: 1px solid #ddd;
-    color: #991aa7;
     padding: 8px;
     text-align: center;
 }
 
 .forecast-table th {
-    background-color: #3498db;
-    color: #fff;
+    border: 1px solid #ddd;
 }
 
 .forecast-table img {
@@ -120,91 +99,30 @@ button {
     margin-top: 20px;
 }
 
-/* Add your existing styles */
-
-.connect-text {
-    text-align: center;
-    margin-bottom: 20px; /* Adjust margin as needed */
-    font-size: 16px;
-}
-
-.connect-text a {
-    text-decoration: none;
-    color: #c4c3d7; /* Adjust color as needed */
-}
-
-.connect-text img {
-    font-size: 20px; /* Adjust icon size as needed */
+.content-about img {
     margin-left: 10px; /* Add margin between the icon and text */
-    width: 30px;
-}
-
-.header-background {
-    height: 80px;
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    background:
-        linear-gradient(27deg, #151515 5px, transparent 5px) 0 5px,
-        linear-gradient(207deg, #151515 5px, transparent 5px) 10px 0px,
-        linear-gradient(27deg, #222 5px, transparent 5px) 0px 10px,
-        linear-gradient(207deg, #222 5px, transparent 5px) 10px 5px,
-        linear-gradient(90deg, #1b1b1b 10px, transparent 10px),
-        linear-gradient(#1d1d1d 25%, #1a1a1a 25%, #1a1a1a 50%, transparent 50%, transparent 75%, #242424 75%, #242424);
-    background-color: #131313;
-    background-size: 20px 20px;
-    border: 15px solid;
-    padding: 15px;
-    border-image: repeating-linear-gradient(to bottom right, #33475b, #0033CC, #FF77CC, rgb(255, 122, 89)) 20;
-    border-image-slice: 480 2660 340 2660; /* Adjust as needed */
-    border-image-width: 30px 20% 25px 20%; /* Adjust as needed */
-    border-image-outset: 10px 0px 10px 0px; /* Adjust as needed */
-    border-image-repeat: stretch stretch; /* Adjust as needed */
-    border-image-source: url("https://picjumbo.com/wp-content/uploads/ukraine-flag-in-ukrainian-nature-free-photo.jpg");
-    border-style: solid;
+    width: 25px;
 }
 
 .input-section {
-    position: fixed;
-    top: 149px;
-    width: 100%;
-    padding: 5px; /* Adjust padding as needed for spacing */
-    display: flex;
-    justify-content: space-between; /* Add this to space items evenly */
-}
-
-.input-section input {
-    width: 150px;
-    height: 30px;
-    padding: 5px;
-    flex: 0 0 30%; /* 30% width, don't grow or shrink */
-    margin-right: 5px;  /*Adjust margin as needed */
-}
-
-.input-section button {
-    width: 50px;
-    height: 50px;
-    padding: 5px;
-    margin-right: 5px;
-    flex: 0 0 20%; /* 30% width, don't grow or shrink */
-}
-
-.input-section button:hover {
-    background-color: #29b930;
+    width: 155px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .currency-container {
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Align items at the start of the cross axis */
-    margin-top: 180px;
+    margin-top: 100px;
     color: #3faa88;
 }
 
 .currency-form {
-    flex: 0 0 40%; /* 40% width, don't grow or shrink */
-    margin-right: 5%;  /* Adjust margin as needed */
+    max-width: 200px;
+    margin: 0 auto;
+    text-align: center;
+
 }
 
 .currency-info {
@@ -231,26 +149,29 @@ button {
 
 .center-div-main {
     text-align: center;
-    margin-top: 250px;
-    font-size: 15px;
-    color: #3faa88;
-
+    margin-top: 500px;
 }
 
-.header-buttons p a{
-    margin-left: 19.5%;
+.header-buttons {
+    display: flex;
+    justify-content: center;
+}
 
+.header-buttons a {
+    margin: 0px 10px 0px 0px;
+    text-decoration: none;
+    display: inline-block;
 }
 
 /* Autocomplete dropdown styling */
 .ui-autocomplete {
-    background-color: #131313;
+    background-color: #000000;
     font-size: medium;
-    color: #0033CC;
+    color: #04ba0e;
     max-width: 35%;
     max-height: 150px;
     overflow-y: auto;
-    border: 1px solid #ccc; /* Add a border for a cleaner look */
+    border: 3px solid #ffffff76; /* Add a border for a cleaner look */
 }
 
 .ui-menu-item {
@@ -260,6 +181,78 @@ button {
 }
 
 .ui-menu-item:hover {
-    background-color: #e6f7ff; /* Change the background color on hover */
+    background-color: #e32c2c74; /* Change the background color on hover */
 }
 
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.buttons-chat {
+    margin-top: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.join {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.create-btn {
+    width: 100%;
+}
+
+.message-box {
+    margin: 0 auto;
+    padding: 20px;
+    border-color: black;
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    align-items: stretch;
+}
+
+.messages {
+    overflow-y: scroll;
+    flex: 1;
+    width: 100%;
+}
+
+.inputs {
+    padding: 10px;
+    display: flex;
+}
+
+h2 {
+    text-align: center;
+}
+
+#message {
+    flex: 1;
+}
+
+.text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.muted {
+    font-size: 10px;
+    color: darkgray;
+}
