@@ -46,16 +46,15 @@ def index():
 
 @app.route("/chat", methods=["POST", "GET"])
 def chat():
-    session.clear()
-    if request.method == "POST":
-        name = request.form.get("name")
+    if 'username' in session:                   #try_1
+        # User is already logged in, use the 'username' from the session
+        #name = request.form.get("name")
+        name = session['username']
         code = request.form.get("code")
         join = request.form.get("join", False)
         create = request.form.get("create", False)
-
-        if not name:
-            return render_template("chat.html", error="Please enter a name", code=code, name=name)
-
+        #if not name:
+            #return render_template("chat.html", error="Please enter a name", code=code, name=name)
         if join is not False and not code:
             return render_template("chat.html", error="Please enter a room code", code=code, name=name)
         room = code
@@ -68,6 +67,7 @@ def chat():
         session["room"] = room
         session["name"] = name
         return redirect(url_for("room"))
+    session.clear()
 
     return render_template("chat.html")
 
@@ -269,9 +269,7 @@ def about():
 
 '''
 
-    
     *** test ***
-
     if __name__ == '__main__':
     app.run(debug=True)
     *** test ***

@@ -42,13 +42,13 @@
   <div class="currency-container">
     <div class="currency-form">
         <form id="currencyForm" action="/currency" method="post">
-            <label for="user_input_currency_1">Enter currency you want to sell:</label>
+            <label for="user_input_currency_1">Currency you have:</label>
             <input type="text" id="user_input_currency_1" name="user_input_currency_1" required>
             <br>
-            <label for="user_input_currency_2">Enter currency you want to purchase:</label>
+            <label for="user_input_currency_2">Currency you want:</label>
             <input type="text" id="user_input_currency_2" name="user_input_currency_2" required>
             <br>
-            <label for="user_input_amount">Enter amount:</label>
+            <label for="user_input_amount">Amount you have:</label>
             <input type="text" id="user_input_amount" name="user_input_amount">
             <button type="submit"><img src="{{ url_for('static', filename='link-icons/money-bill-transfer-solid.svg') }}" alt=money-bill-transfer-solid.svg></button>
         </form>

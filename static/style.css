@@ -56,7 +56,7 @@ button img {
 }
 
 button {
-    background-color: #ffffff;
+    background-color: #ffffffa4;
     border-radius: 10px;
     transition: 0.3s;
     padding: 5px 10px;
@@ -64,7 +64,7 @@ button {
 }
 
 button:hover {
-       background-color: #ffffffe7;
+       background-color: #ffffff;
        transform: scale(1.1); /* You can adjust the scaling factor as needed */
        transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
 }
@@ -74,7 +74,6 @@ button:hover {
 }
 
 .forecast-table {
-    color: #fff;
     border-collapse: collapse;
 }
 
@@ -115,7 +114,6 @@ button:hover {
     justify-content: space-between;
     align-items: flex-start; /* Align items at the start of the cross axis */
     margin-top: 100px;
-    color: #3faa88;
 }
 
 .currency-form {
@@ -139,10 +137,6 @@ button:hover {
 }
 
 .currency-result {
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    color: #f9540dd5;
     padding: 10px;
     text-align: center;
 }
@@ -165,9 +159,8 @@ button:hover {
 
 /* Autocomplete dropdown styling */
 .ui-autocomplete {
-    background-color: #000000;
+    background-color: #ffffff;
     font-size: medium;
-    color: #04ba0e;
     max-width: 35%;
     max-height: 150px;
     overflow-y: auto;
@@ -181,7 +174,7 @@ button:hover {
 }
 
 .ui-menu-item:hover {
-    background-color: #e32c2c74; /* Change the background color on hover */
+    background-color: #00000049; /* Change the background color on hover */
 }
 
 .content {
