@@ -28,4 +28,4 @@ jobs:
 
     - name: Run tests
       run: |
-        docker run --rm weather-image pytest APITests
+        docker run --rm -e FIRST_API_KEY=${{ secrets.FIRST_API_KEY }} -e SECOND_API_KEY=${{ secrets.SECOND_API_KEY }} weather-image pytest APITests
