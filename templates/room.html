@@ -52,10 +52,11 @@
         const messages = document.getElementById("messages");
 
         const createMessage = (name, msg) => {
+            const capitalizedName = name.charAt(0).toUpperCase() + name.slice(1);
             const content = `
             <div class="text">
                 <span>
-                    <strong>${name}</strong>: ${msg}
+                    <strong>${capitalizedName}</strong>: ${msg}
                 </span>
                 <span class="muted">
                     ${new Date().toLocaleString()}
