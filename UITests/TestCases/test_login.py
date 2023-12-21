@@ -2,20 +2,22 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.common import NoSuchElementException
+
 from PageObjects.MainPage import MainPage
 from PageObjects.LoginPage import LoginPage
 from PageObjects.DashboardPage import DashboardPage
 
 
 class Test_Login:
-    baseURL = "http://localhost:5000/"          #"https://pb-weather-3c6bf6191360.herokuapp.com/"
+    baseURL = "https://pb-weather-3c6bf6191360.herokuapp.com/"          #"http://localhost:5000/"
 
     @pytest.mark.regression
+    @pytest.mark.login
     def test_valid_logins(self, setup):
         self.driver = setup
         self.driver.get(self.baseURL)
         self.driver.maximize_window()
-        self.driver.implicitly_wait(5)
+        self.driver.implicitly_wait(3)
 
         self.mp = MainPage(self.driver)
         self.lp = LoginPage(self.driver)
