@@ -6,10 +6,10 @@ from selenium.webdriver.chrome.options import Options
 @pytest.fixture()
 def setup(browser):
     if browser == "chrome":
-        options = Options()
-        options.add_argument("--headless")  # Add this line to run Chrome in headless mode
-        driver = webdriver.Chrome(options=options)
-        print("Launching Chrome browser in headless mode.............")
+        #options = Options()
+        #options.add_argument("--headless")  # Add this line to run Chrome in headless mode
+        driver = webdriver.Chrome()     # options=options
+        #print("Launching Chrome browser in headless mode.............")
     elif browser == "firefox":
         # Similar modifications for Firefox if needed
         options = webdriver.FirefoxOptions()

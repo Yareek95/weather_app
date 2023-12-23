@@ -8,6 +8,7 @@ class LoginPage:
     input_username_id = "username"
     input_password_id = "password"
     btn_submit_xpath = "//button[@type='submit']"
+    msg_error_xpath = "//p[@class='error-message']"
 
     def __init__(self, driver):
         self.driver = driver
@@ -20,3 +21,6 @@ class LoginPage:
 
     def click_submit(self):
         self.driver.find_element(By.XPATH, self.btn_submit_xpath).click()
+
+    def error_msg_txt(self):
+        return self.driver.find_element(By.XPATH, self.msg_error_xpath).text

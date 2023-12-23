@@ -2,7 +2,7 @@ from selenium.webdriver.common.by import By
 
 
 class DashboardPage:
-    txt_welcome_xpath = "//h2[normalize-space()='Welcome, Q!']"
+    txt_welcome_xpath = "//h2[contains(text(), 'Welcome')]"
     btn_logout_xpath = "//a[@href='/logout']//button"
 
 

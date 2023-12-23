@@ -210,17 +210,23 @@ def register():
     if request.method == 'POST':
         username = request.form['username'].lower()     # Convert to lowercase
 
+        if len(username) < 2:
+            return render_template('register.html', error_message='Username is too short. (must be >= 2)')
+        if len(username) > 8:
+            return render_template('register.html', error_message='Username must be less than 9 characters.')
         if not username[:2].isalpha():
             return render_template('register.html', error_message='Username must start with at least 2 letters.')
-        if len(username) >= 8:
-            return render_template('register.html', error_message='Username must be less than 8 characters.')
         if not all(char.isalnum() or char in ('_', '-') for char in username):
             return render_template('register.html', error_message='Username can only contain letters, numbers, underscores, or hyphens.')
 
         password = request.form['password']
 
-        if len(password) <= 4:
-            return render_template('register.html', error_message='Password is too short.')
+        if len(password) < 4:
+            return render_template('register.html', error_message='Password is too short. (must be >= 4)')
+        confirm_password = request.form['confirm_password']
+
+        if len(password) > 10:
+            return render_template('register.html', error_message='Password must be less than 11 characters.')
         confirm_password = request.form['confirm_password']
 
         # Check if the password and confirm password match
