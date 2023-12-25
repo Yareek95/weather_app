@@ -8,6 +8,11 @@ from dotenv import load_dotenv
 from flask_socketio import SocketIO, emit, join_room, leave_room, send
 import random
 from string import ascii_uppercase
+from datetime import datetime
+import pytz
+
+# Specify the time zone as Central Time
+central_timezone = pytz.timezone('America/Chicago')
 
 load_dotenv()  # Load environment variables from .env file
 app = Flask(__name__)
@@ -27,57 +32,35 @@ socketio = SocketIO(app)
 mongo = PyMongo(app)
 bcrypt = Bcrypt(app)
 
+global_chat_collection = mongo.db.global_chat
 rooms = {}
-
-
-def generate_unique_code(length):
-    while True:
-        code = ""
-        for _ in range(length):
-            code += random.choice(ascii_uppercase)
-        if code not in rooms:
-            break
-    return code
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     return render_template('index.html')
 
+
 @app.route("/chat", methods=["POST", "GET"])
 def chat():
     if 'username' in session:
-        # User is already logged in, use the 'username' from the session
         name = session['username']
-        code = request.form.get("code")
-        join = request.form.get("join", False)
-        create = request.form.get("create", False)
+        glob_chat = request.form.get("global_chat")
 
-        if join is not False and not code:
-            return render_template("chat.html", error="Please enter a room code", code=code, name=name)
-        room = code
-        if create is not False:
-            room = generate_unique_code(4)
-            rooms[room] = {"members": 0, "messages": []}
-        elif code not in rooms:
-            return render_template("chat.html", error="Room does not exist", code=code, name=name)
+        room = "Global Chat"
+        rooms[room] = {"members": 0, "messages": []}
+
+        # Retrieve message history from MongoDB
+        messages = global_chat_collection.find()
+        message_history = [{"name": msg["name"], "message": msg["message"], "timestamp": msg["timestamp"]} for msg in messages]
+        rooms[room]["messages"] = message_history
 
         session["room"] = room
         session["name"] = name
-        return redirect(url_for("room"))
+        return render_template("room.html", messages=rooms[room]["messages"])
+
     session.clear()
-
-    return render_template("chat.html")
-
-
-@app.route("/room")
-def room():
-    room = session.get("room")
-    if room is None or session.get("name") is None or room not in rooms:
-        return redirect(url_for("chat"))
-
-    return render_template("room.html", code=room, messages=rooms[room]["messages"])
-
+    return redirect(url_for("login"))
 
 @socketio.on("message")
 def message(data):
@@ -87,7 +70,8 @@ def message(data):
 
     content = {
         "name": session.get("name"),
-        "message": data["data"]
+        "message": data["data"],
+        "timestamp": datetime.now(central_timezone).strftime("%Y-%m-%d %H:%M:%S")
     }
 
     # Send the message to the room
@@ -95,6 +79,10 @@ def message(data):
 
     # Append the message to the room's messages
     rooms[room]["messages"].append(content)
+    # If it's the global chat, also store the message in MongoDB
+    if room == "Global Chat":
+        global_chat_collection.insert_one(content)
+
     print(f"{session.get('name')} said: {data['data']}")
 
 
@@ -120,10 +108,10 @@ def disconnect():
     name = session.get("name")
     leave_room(room)
 
-    if room in rooms:
-        rooms[room]["members"] -= 1
-        if rooms[room]["members"] <= 0:
-            del rooms[room]
+    #if room in rooms:
+     #   rooms[room]["members"] -= 1
+      #  if rooms[room]["members"] <= 0:
+       #     del rooms[room]
 
     send({"name": name, "message": "has left the room"}, to=room)
     print(f"{name} has left the room {room}")
@@ -291,7 +279,6 @@ def about():
 if __name__ == "__main__":
     socketio.run(app, debug=True, port=5000)
   '''
-
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000
     port = int(os.environ.get("PORT", 5000))

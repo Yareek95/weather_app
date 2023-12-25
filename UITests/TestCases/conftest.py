@@ -21,6 +21,7 @@ def setup(browser):
         print("Launching Edge browser.............")
     return driver
 
+
 def pytest_addoption(parser):       #This will get the value from CLI / hooks
     parser.addoption("--browser", default="chrome", help="Choose the browser: chrome, firefox, or ie")
 
