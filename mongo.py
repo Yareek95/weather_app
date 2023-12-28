@@ -24,7 +24,7 @@ try:
         collection = db["global_chat"]
 
         # Define the criteria for documents to delete
-        criteria = {"name": "yarik"}
+        criteria = {"name": "q"}
 
         # Delete multiple documents that match the criteria
         result = collection.delete_many(criteria)

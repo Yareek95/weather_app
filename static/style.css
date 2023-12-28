@@ -200,13 +200,12 @@ button:hover {
 
 .message-box {
     margin: 0 auto;
-    padding: 20px;
+    padding: 5px;
     border-color: black;
     border-width: 2px;
     border-style: solid;
     border-radius: 10px;
-    background-color: whitesmoke;
-    height: 50vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     width: 80vw;
@@ -232,16 +231,37 @@ h2 {
     flex: 1;
 }
 
-.text {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
+.text span {
+    display: block; /* Display each span on a new line */
+    overflow-wrap: break-word; /* Wrap long words within the span */
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
+.text strong {
+    margin-left: 5px;
+}
 .muted {
-    font-size: 10px;
-    color: darkgray;
+    font-size: 7px;
+}
+
+.left {
+    text-align: left;
+    background-color: rgb(16 229 247);
+    margin-bottom: 3px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 40px;
+    max-width: max-content;
+}
+
+.right {
+    margin-left: auto;
+    background-color: rgb(218 0 255);
+    margin-bottom: 3px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 40px;
+    max-width: max-content;
+    
 }
