@@ -42,6 +42,14 @@
             <button type="submit">
                 <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
             </button>
+    
+            <label for="toggle"></label>
+            <div class="toggle-switch">
+                <input type="checkbox" id="toggle" name="temperature_unit" value="celsius">
+                <label for="toggle" class="toggle-label"></label>
+                <span class="toggle-text">USA</span>
+                <span class="toggle-text">EU</span>
+            </div>
         </form>
     </div>
     <div class="weather-info-table">
@@ -55,9 +63,30 @@
                 <thead>
                     <tr>
                         <th>Temp</th>
-                        <th>Feels</th>
+                        <th>Feels like</th>
                         <th>Wind</th>
                         <th>Pressure</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        {% if temperature_unit == 'celsius' %}
+                            <td>{{ weather_data.current.temp_c }}°C</td>
+                            <td>{{ weather_data.current.feelslike_c }}°C</td>
+                            <td>{{ weather_data.current.wind_kph }} km/h</td>
+                            <td>{{ weather_data.current.pressure_mb }} mb</td>
+                        {% elif temperature_unit == 'fahrenheit' %}
+                            <td>{{ weather_data.current.temp_f }}°F</td>
+                            <td>{{ weather_data.current.feelslike_f }}°F</td>
+                            <td>{{ weather_data.current.wind_mph }} mi/h</td>
+                            <td>{{ weather_data.current.pressure_in }} in</td>
+                        {% endif %}
+                    </tr>
+                </tbody>
+            </table>
+            <table>
+                <thead>
+                    <tr>
                         <th>Visibility</th>
                         <th>Gust</th>
                         <th>Precipitation</th>
@@ -65,37 +94,34 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{ weather_data.current.temp_c }}°C</td>
-                        <td>{{ weather_data.current.feelslike_c }}°C</td>
-                        <td>{{ weather_data.current.wind_kph }} km/h</td>
-                        <td>{{ weather_data.current.pressure_mb }} mb</td>
-                        <td>{{ weather_data.current.vis_km }} km</td>
-                        <td>{{ weather_data.current.gust_kph }} kph</td>
-                        <td>{{ weather_data.current.precip_mm }} mm</td>
-                    </tr>
-                    <tr>
-                        <td>{{ weather_data.current.temp_f }}°F</td>
-                        <td>{{ weather_data.current.feelslike_f }}°F</td>
-                        <td>{{ weather_data.current.wind_mph }} mi/h</td>
-                        <td>{{ weather_data.current.pressure_in }} in</td>
-                        <td>{{ weather_data.current.vis_miles }} miles</td>
-                        <td>{{ weather_data.current.gust_mph }} mph</td>
-                        <td>{{ weather_data.current.precip_in }} inches</td>
+                        {% if temperature_unit == 'celsius' %}
+                            <td>{{ weather_data.current.vis_km }} km</td>
+                            <td>{{ weather_data.current.gust_kph }} km/h</td>
+                            <td>{{ weather_data.current.precip_mm }} mm</td>
+                        {% elif temperature_unit == 'fahrenheit' %}
+                            <td>{{ weather_data.current.vis_miles }} mi</td>
+                            <td>{{ weather_data.current.gust_mph }} mi/h</td>
+                            <td>{{ weather_data.current.precip_in }} in</td>
+                        {% endif %}
                     </tr>
                 </tbody>
             </table>
             <p>Wind Direction: {{ weather_data.current.wind_dir }}, Humidity: {{ weather_data.current.humidity }}, Cloudy: {{ weather_data.current.cloud }}</p>
+        {% endif %}
     </div>    
     <table class="forecast-table">
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Avg C</th>
-                <th>Min C</th>
-                <th>Max C</th>
-                <th>Avg F</th>
-                <th>Min F</th>
-                <th>Max F</th>
+                {% if temperature_unit == 'celsius' %}
+                    <th>Avg °C</th>
+                    <th>Min °C</th>
+                    <th>Max °C</th>
+                {% elif temperature_unit == 'fahrenheit' %}
+                    <th>Avg °F</th>
+                    <th>Min °F</th>
+                    <th>Max °F</th>
+                {% endif %}
                 <th>Summary</th>
             </tr>
         </thead>
@@ -103,21 +129,24 @@
             {% for day in second_api_data.forecast %}
                 <tr>
                     <td>{{ day.date }}</td>
-                    <td>{{ day.avg_c }}</td>
-                    <td>{{ day.min_c }}</td>
-                    <td>{{ day.max_c }}</td>
+                    {% if temperature_unit == 'celsius' %}
+                        <td>{{ day.avg_c }}</td>
+                        <td>{{ day.min_c }}</td>
+                        <td>{{ day.max_c }}</td>
+                    {% elif temperature_unit == 'fahrenheit' %}
                     <td>{{ day.avg_f }}</td>
                     <td>{{ day.min_f }}</td>
                     <td>{{ day.max_f }}</td>
+                    {% endif %}
                     <td>{{ day.summary }}<img src="{{ url_for('static', filename='weather-icons/' + day.icon) }}" alt=f"{{day.icon}}"></td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-    {% endif %}
     {% if error_message %}
         <p class="error-message">{{ error_message }}</p>
     {% endif %}
+
 </body>
 </html>
 

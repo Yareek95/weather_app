@@ -45,7 +45,7 @@ def index():
 def chat():
     if 'username' in session:
         name = session['username']
-        glob_chat = request.form.get("global_chat")
+        #glob_chat = request.form.get("global_chat")
 
         room = "Global Chat"
         rooms[room] = {"members": 0, "messages": []}
@@ -61,6 +61,7 @@ def chat():
 
     session.clear()
     return redirect(url_for("login"))
+
 
 @socketio.on("message")
 def message(data):
@@ -99,7 +100,6 @@ def connect(auth):
     join_room(room)
     send({"name": name, "message": "has entered the room"}, to=room)
     rooms[room]["members"] += 1
-    print(f"{name} joined room {room}")
 
 
 @socketio.on("disconnect")
@@ -108,25 +108,22 @@ def disconnect():
     name = session.get("name")
     leave_room(room)
 
-    #if room in rooms:
-     #   rooms[room]["members"] -= 1
-      #  if rooms[room]["members"] <= 0:
-       #     del rooms[room]
-
     send({"name": name, "message": "has left the room"}, to=room)
-    print(f"{name} has left the room {room}")
 
 
 @app.route('/weather', methods=['GET', 'POST'])
 def weather():
-    user_input_weather = None
+    user_input_weather = request.form.get('user_input')
+    temperature_unit = request.form.get('temperature_unit')
+    # Set default values if not provided
+    user_input_weather = user_input_weather if user_input_weather else 'Chicago'
+    temperature_unit = temperature_unit if temperature_unit else 'fahrenheit'
+
     first_api = None
     second_api_data = None
     error_message = None
 
-    if request.method == 'POST':
-        user_input_weather = request.form.get('user_input')
-
+    if request.method in ['GET', 'POST']:
         if user_input_weather:
             # Weather API Call
             params_first_api = {
@@ -139,24 +136,29 @@ def weather():
             if response_first_api.status_code == 200:
                 first_api = response_first_api.json()
                 # Extract latitude and longitude
-                lat = first_api['location']['lat']
-                lon = first_api['location']['lon']
+                lat = first_api.get('location', {}).get('lat')
+                lon = first_api.get('location', {}).get('lon')
+
                 # Second API Call
-                params_second_api = {
-                    'api_key': SECOND_API_KEY,
-                    'lat': lat,
-                    'lon': lon,
-                }
-                response_second_api = requests.get(SECOND_API_BASE_URL, params=params_second_api)
-                if response_second_api.status_code == 200:
-                    second_api_data = response_second_api.json()
+                if lat is not None and lon is not None:
+                    params_second_api = {
+                        'api_key': SECOND_API_KEY,
+                        'lat': lat,
+                        'lon': lon,
+                    }
+                    response_second_api = requests.get(SECOND_API_BASE_URL, params=params_second_api)
+
+                    if response_second_api.status_code == 200:
+                        second_api_data = response_second_api.json()
+                    else:
+                        error_message = f"Error: {response_second_api.json().get('error_message', 'Unknown error')}"
                 else:
-                    error_message = f"Error: {response_second_api.json().get('error_message', 'Unknown error')}"
+                    error_message = "Latitude or longitude not available in the first API response."
             else:
                 error_message = f"Error: {response_first_api.status_code}"
 
-    return render_template('weather.html', user_input=user_input_weather, weather_data=first_api,
-                           second_api_data=second_api_data, error_message=error_message)
+    return render_template('weather.html', user_input=user_input_weather, temperature_unit=temperature_unit,
+                           weather_data=first_api, second_api_data=second_api_data, error_message=error_message)
 
 
 @app.route('/currency', methods=['GET', 'POST'])
@@ -279,6 +281,7 @@ def about():
 if __name__ == "__main__":
     socketio.run(app, debug=True, port=5000)
   '''
+
 if __name__ == '__main__':
     # Use the environment variable PORT if available, or default to 5000
     port = int(os.environ.get("PORT", 5000))

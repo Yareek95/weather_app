@@ -64,12 +64,15 @@ button:hover {
        transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
 }
 
-.weather-info-table {
+.weather-info-table table {
+    border: 1px solid #ddd;
+    text-align: center;
     width: 100%;
 }
 
 .forecast-table {
     border-collapse: collapse;
+    width: 100%;
 }
 
 .forecast-table td {
@@ -253,16 +256,65 @@ h2 {
     border-top-right-radius: 50px;
     border-bottom-right-radius: 20px;
     border-top-left-radius: 40px;
-    max-width: max-content;
+    max-width: 75%;
 }
 
 .right {
     margin-left: auto;
+    margin-right: 5px;
     background-color: rgb(218 0 255);
     margin-bottom: 3px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-top-right-radius: 40px;
-    max-width: max-content;
+    border-top-right-radius: 20px;
+    max-width: 75%;
     
+}
+
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 80px;
+    height: 42px;
+}
+
+.toggle-switch input {
+    display: none;
+}
+
+.toggle-label {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    border-radius: 34px;
+    transition: background-color 0.3s;
+}
+
+.toggle-label:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+}
+
+.toggle-switch input:checked + .toggle-label {
+    background-color: #86d3ff;
+}
+
+.toggle-switch input:checked + .toggle-label:before {
+    transform: translateX(45px);
+}
+
+.toggle-text {
+    display: inline-block;
+    margin: 40px 5px;
 }
