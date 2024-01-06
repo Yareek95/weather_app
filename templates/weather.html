@@ -35,79 +35,76 @@
             </p>
         {% endif %}
     </div>
-    <div class="input-section">
-        <form id="weatherForm" action="/weather" method="post">
-            <label for="user_input"></label>
-            <input type="text" id="user_input" name="user_input" placeholder="City Name or Zip Code" required>
-            <button type="submit">
-                <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
-            </button>
-    
-            <label for="toggle"></label>
-            <div class="toggle-switch">
-                <input type="checkbox" id="toggle" name="temperature_unit" value="celsius">
-                <label for="toggle" class="toggle-label"></label>
-                <span class="toggle-text">USA</span>
-                <span class="toggle-text">EU</span>
-            </div>
-        </form>
-    </div>
-    <div class="weather-info-table">
-        {% if weather_data %}
-            {% if second_api_data %}
-                {% set time_of_day = 'Day' if weather_data.current.is_day == 1 else 'Night' %}
-                <p>{{ weather_data.location.localtime }} and {{ weather_data.current.condition.text }} {{ time_of_day }} in 
-                    {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
-            {% endif %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Temp</th>
-                        <th>Feels like</th>
-                        <th>Wind</th>
-                        <th>Pressure</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {% if temperature_unit == 'celsius' %}
-                            <td>{{ weather_data.current.temp_c }}°C</td>
-                            <td>{{ weather_data.current.feelslike_c }}°C</td>
-                            <td>{{ weather_data.current.wind_kph }} km/h</td>
-                            <td>{{ weather_data.current.pressure_mb }} mb</td>
-                        {% elif temperature_unit == 'fahrenheit' %}
-                            <td>{{ weather_data.current.temp_f }}°F</td>
-                            <td>{{ weather_data.current.feelslike_f }}°F</td>
-                            <td>{{ weather_data.current.wind_mph }} mi/h</td>
-                            <td>{{ weather_data.current.pressure_in }} in</td>
-                        {% endif %}
-                    </tr>
-                </tbody>
-            </table>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Visibility</th>
-                        <th>Gust</th>
-                        <th>Precipitation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {% if temperature_unit == 'celsius' %}
-                            <td>{{ weather_data.current.vis_km }} km</td>
-                            <td>{{ weather_data.current.gust_kph }} km/h</td>
-                            <td>{{ weather_data.current.precip_mm }} mm</td>
-                        {% elif temperature_unit == 'fahrenheit' %}
-                            <td>{{ weather_data.current.vis_miles }} mi</td>
-                            <td>{{ weather_data.current.gust_mph }} mi/h</td>
-                            <td>{{ weather_data.current.precip_in }} in</td>
-                        {% endif %}
-                    </tr>
-                </tbody>
-            </table>
-            <p>Wind Direction: {{ weather_data.current.wind_dir }}, Humidity: {{ weather_data.current.humidity }}, Cloudy: {{ weather_data.current.cloud }}</p>
-        {% endif %}
+    <div class="weather-container">
+        <div class="input-section">
+            <form id="weatherForm" action="/weather" method="post">
+                <label for="user_input"></label>
+                <input type="text" id="user_input" name="user_input" placeholder="City Name or Zip Code" required>
+                <div class="temperature-unit-radio">
+                    <label for="celsius">°C</label>
+                    <input type="radio" id="celsius" name="temperature_unit" value="celsius">
+        
+                    <label for="fahrenheit">°F</label>
+                    <input type="radio" id="fahrenheit" name="temperature_unit" value="fahrenheit" checked>
+                </div>
+                <button type="submit">
+                    <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
+                </button>
+            </form>
+        </div>
+        <div class="weather-info-table">
+                    {% set time_of_day = 'Day' if weather_data.current.is_day == 1 else 'Night' %}
+                    <p>{{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
+                    <p>{{ weather_data.location.localtime }} {{ weather_data.current.condition.text }} {{ time_of_day }}</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Temp</th>
+                            <th>Feels like</th>
+                            <th>Wind</th>
+                            <th>Pressure</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% if temperature_unit == 'celsius' %}
+                                <td>{{ weather_data.current.temp_c }}°C</td>
+                                <td>{{ weather_data.current.feelslike_c }}°C</td>
+                                <td>{{ weather_data.current.wind_kph }} km/h</td>
+                                <td>{{ weather_data.current.pressure_mb }} mb</td>
+                            {% elif temperature_unit == 'fahrenheit' %}
+                                <td>{{ weather_data.current.temp_f }}°F</td>
+                                <td>{{ weather_data.current.feelslike_f }}°F</td>
+                                <td>{{ weather_data.current.wind_mph }} mi/h</td>
+                                <td>{{ weather_data.current.pressure_in }} in</td>
+                            {% endif %}
+                        </tr>
+                    </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Visibility</th>
+                            <th>Gust</th>
+                            <th>Precipitation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {% if temperature_unit == 'celsius' %}
+                                <td>{{ weather_data.current.vis_km }} km</td>
+                                <td>{{ weather_data.current.gust_kph }} km/h</td>
+                                <td>{{ weather_data.current.precip_mm }} mm</td>
+                            {% elif temperature_unit == 'fahrenheit' %}
+                                <td>{{ weather_data.current.vis_miles }} mi</td>
+                                <td>{{ weather_data.current.gust_mph }} mi/h</td>
+                                <td>{{ weather_data.current.precip_in }} in</td>
+                            {% endif %}
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Wind Direction: {{ weather_data.current.wind_dir }}, Humidity: {{ weather_data.current.humidity }}, Cloudy: {{ weather_data.current.cloud }}</p>
+        </div>
     </div>    
     <table class="forecast-table">
         <thead>

@@ -14,16 +14,22 @@ body {
 
 .center-div-login {
     text-align: center;
-    margin: 0 auto;
-    margin-top: 100px; /* Adjust the margin based on your layout */
-    max-width: 200px;
+    margin-top: 100px;
+}
+
+.center-div-login input{
+    height: 22px;
+    margin: 10px;
 }
 
 .center-div-register {
-    margin: 0 auto;
     text-align: center;
-    margin-top: 150px; /* Adjust the margin based on your layout */
-    max-width: 200px;
+    margin-top: 100px;
+}
+
+.center-div-register input {
+    height: 22px;
+    margin: 10px;
 }
 
 .chat-form {
@@ -34,20 +40,25 @@ body {
 
 label {
     display: block;
-    margin-bottom: 8px;
 }
 
-input {
+.chat-input {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
     box-sizing: border-box;
 }
 
+.chat-input input{
+    height: 22px;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+
 button img {
     width: 35px;
     vertical-align: middle;
-    margin-right: 5px;
 }
 
 button {
@@ -62,6 +73,20 @@ button:hover {
        background-color: #ffffff;
        transform: scale(1.1); /* You can adjust the scaling factor as needed */
        transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
+}
+.weather-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start of the cross axis */
+}
+
+.weather-info-table {
+    width: 60%;
+}
+
+.weather-info-table p {
+    text-align: center;
+    margin-left: 5px 
 }
 
 .weather-info-table table {
@@ -103,9 +128,13 @@ button:hover {
 }
 
 .input-section {
-    width: 155px;
-    margin: 0 auto;
+    width: 40%;
     text-align: center;
+}
+
+.input-section input {
+    max-width: 135px;
+    margin: 10px;
 }
 
 .currency-container {
@@ -119,7 +148,11 @@ button:hover {
     max-width: 200px;
     margin: 0 auto;
     text-align: center;
+}
 
+.currency-form input{
+    height: 22px;
+    margin: 10px;
 }
 
 .currency-info {
@@ -222,11 +255,6 @@ button:hover {
     width: 100%;
 }
 
-.inputs {
-    padding: 10px;
-    display: flex;
-}
-
 h2 {
     text-align: center;
 }
@@ -271,50 +299,7 @@ h2 {
     
 }
 
-.toggle-switch {
-    position: relative;
-    display: inline-block;
-    width: 80px;
-    height: 42px;
-}
-
-.toggle-switch input {
-    display: none;
-}
-
-.toggle-label {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    border-radius: 34px;
-    transition: background-color 0.3s;
-}
-
-.toggle-label:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    border-radius: 50%;
-    transition: transform 0.3s;
-}
-
-.toggle-switch input:checked + .toggle-label {
-    background-color: #86d3ff;
-}
-
-.toggle-switch input:checked + .toggle-label:before {
-    transform: translateX(45px);
-}
-
-.toggle-text {
-    display: inline-block;
-    margin: 40px 5px;
+.temperature-unit-radio label {
+    display: inline;
+    margin-left: 10px
 }
