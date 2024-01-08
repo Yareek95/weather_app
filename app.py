@@ -158,7 +158,9 @@ def weather():
                 error_message = f"Error: {response_first_api.status_code}"
 
     return render_template('weather.html', user_input=user_input_weather, temperature_unit=temperature_unit,
-                           weather_data=first_api, second_api_data=second_api_data, error_message=error_message)
+                           weather_data=first_api, second_api_data=second_api_data, error_message=error_message,
+                           temperature_c=first_api['current']['temp_c'], temperature_f=first_api['current']['temp_f'],
+                           forecast_data=second_api_data['forecast'])
 
 
 @app.route('/currency', methods=['GET', 'POST'])
@@ -207,7 +209,8 @@ def register():
         if not username[:2].isalpha():
             return render_template('register.html', error_message='Username must start with at least 2 letters.')
         if not all(char.isalnum() or char in ('_', '-') for char in username):
-            return render_template('register.html', error_message='Username can only contain letters, numbers, underscores, or hyphens.')
+            return render_template('register.html', error_message='Username can only contain letters, numbers,'
+                                                                  ' underscores, or hyphens.')
 
         password = request.form['password']
 
@@ -228,7 +231,7 @@ def register():
         # Check if the username already exists
         existing_user = mongo.db.users.find_one({'username': username})
         if existing_user:
-            return render_template('register.html', error_message='Username already exists. Choose another.')
+            return render_template('register.html', error_message='Username was taken by someone else.')
 
         # Insert new user into MongoDB
         mongo.db.users.insert_one({'username': username, 'password': hashed_password})
@@ -249,7 +252,7 @@ def login():
             session['username'] = username
             return redirect(url_for('dashboard'))
         if existing_user and not bcrypt.check_password_hash(existing_user['password'], password):
-            return render_template('login.html', error_message='Wrong Password')
+            return render_template('login.html', error_message='Wrong Password, but not the Username 😉')
         if not existing_user:
             return render_template('login.html', error_message='Wrong Username')
 
@@ -276,7 +279,10 @@ def about():
     return render_template('about.html', username=username)
 
 '''
-
+if __name__ == '__main__':
+    # Use the environment variable PORT if available, or default to 5000
+    port = int(os.environ.get("PORT", 5000))
+    socketio.run(app, host="0.0.0.0", port=port)
     *** test ***
 if __name__ == "__main__":
     socketio.run(app, debug=True, port=5000)

@@ -9,7 +9,7 @@ body {
 }
 
 .dashboard {
-    margin-top: 170px;
+    margin-top: 300px;
 }
 
 .center-div-login {
@@ -57,16 +57,16 @@ label {
 }
 
 button img {
-    width: 35px;
+    width: 100%;
     vertical-align: middle;
 }
 
 button {
+    width: 50px;
+    height: 50px;
     background-color: #ffffffa4;
     border-radius: 10px;
     transition: 0.3s;
-    padding: 5px 10px;
-    margin: 0px 0px 10px 0px
 }
 
 button:hover {
@@ -81,11 +81,11 @@ button:hover {
 }
 
 .weather-info-table {
+    margin-left: 10px;
     width: 60%;
 }
 
 .weather-info-table p {
-    text-align: center;
     margin-left: 5px 
 }
 
@@ -302,4 +302,67 @@ h2 {
 .temperature-unit-radio label {
     display: inline;
     margin-left: 10px
+}
+
+.weather-data-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start of the cross axis */
+}
+
+.alarm-clock {
+    font-family: fantasy;
+    font-size: 30px;
+    color: #ffffffe3;
+    background: black;
+}
+
+.weather-condition {
+    margin-left: 5px;
+}
+
+.thermometer {
+    height: 150px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.mercury {
+    width: 100%;
+    background-color: #ff0000;
+    position: absolute;
+    bottom: 0;
+    transition: height 0.5s ease-in-out;
+}
+
+.feelslike {
+    width: 100%;
+    background-color: #09ff0096;
+    position: absolute;
+    bottom: 0;
+    transition: height 0.5s ease-in-out;
+}
+
+.temperature-value {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+}
+
+.feel-value {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+}
+
+.weather-location {
+    text-align: center;
+    font-size: 25px;
 }
