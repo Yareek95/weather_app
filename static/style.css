@@ -75,6 +75,7 @@ button:hover {
        transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
 }
 .weather-container {
+    margin-bottom: 5px;
     display: flex;
     justify-content: space-between;
     align-items: flex-start; /* Align items at the start of the cross axis */
@@ -108,11 +109,6 @@ button:hover {
 
 .forecast-table th {
     border: 1px solid #ddd;
-}
-
-.forecast-table img {
-    width: 30px;
-    height: 30px;
 }
 
 .error-message {
@@ -279,23 +275,23 @@ h2 {
 
 .left {
     text-align: left;
-    background-color: rgb(16 229 247);
+    background-color: rgb(16 229 247 / 55%);
     margin-bottom: 3px;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 20px;
     border-top-left-radius: 40px;
-    max-width: 75%;
+    max-width: 60%;
 }
 
 .right {
     margin-left: auto;
     margin-right: 5px;
-    background-color: rgb(218 0 255);
+    background-color: rgb(218 0 255 / 55%);
     margin-bottom: 3px;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     border-top-right-radius: 20px;
-    max-width: 75%;
+    max-width: 60%;
     
 }
 
@@ -307,57 +303,55 @@ h2 {
 .weather-data-container {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Align items at the start of the cross axis */
+    align-items: center;
 }
 
 .alarm-clock {
+    text-align: center;
     font-family: fantasy;
-    font-size: 30px;
+    font-size: 1.5rem;
     color: #ffffffe3;
-    background: black;
 }
 
 .weather-condition {
     margin-left: 5px;
+    text-wrap: balance;
+}
+
+.weather-condition img{
+    width: 50px;
 }
 
 .thermometer {
-    height: 150px;
-    background-color: #f0f0f0;
-    border-radius: 10px;
+    height: 200px;
     position: relative;
     overflow: hidden;
-    margin-bottom: 10px;
 }
 
 .mercury {
-    width: 100%;
+    margin-left: 35%;
+    width: 30%;
     background-color: #ff0000;
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     transition: height 0.5s ease-in-out;
 }
 
 .feelslike {
-    width: 100%;
-    background-color: #09ff0096;
+    margin-left: 35%;
+    width: 30%;
+    background-color: #fefe0d77;
     position: absolute;
-    bottom: 0;
+    bottom: 0px;
     transition: height 0.5s ease-in-out;
 }
 
 .temperature-value {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
     transform: translateX(-50%);
     font-size: 16px;
 }
 
 .feel-value {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
     transform: translateX(-50%);
     font-size: 16px;
 }
@@ -365,4 +359,9 @@ h2 {
 .weather-location {
     text-align: center;
     font-size: 25px;
+}
+
+.examples {
+    font-size: 10px;
+    color: white;
 }

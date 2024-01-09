@@ -58,39 +58,53 @@
                     <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
                 </button>
             </form>
+            <div class="examples">
+                <p>Examples: Yellowknife, Dubai</p>
+            </div>
         </div>
         <div class="weather-info-table">
             <div class="weather-data-container">
                 <div class="first-table-weather">
                     <div id="alarmClock" class="alarm-clock"></div>
                     <div class="thermometer">
-                        <div class="mercury">
-                            <div class="temperature-value"></div>
-                        </div>
-                        <div class="feelslike">
-                            <div class="feel-value"></div>
-                        </div>
+                        <div class="mercury"></div>
+                        <div class="feelslike"></div>
                     </div>
                 </div>
                 <div class="weather-condition">
+                    <p>Temp: <span class="temperature-value"></span>, Feels like: <span class="feel-value"></span></p>
+
                     {% if temperature_unit == 'celsius' %}
-                        <p>Wind: {{ weather_data.current.wind_dir }},
-                            {{ weather_data.current.wind_kph }} km/h,
-                            Gust: {{ weather_data.current.gust_kph }} km/h,
-                        </p>
-                        <p>Visibility: {{ weather_data.current.vis_km }} km,
-                            Precipitation: {{ weather_data.current.precip_mm }} mm,
-                            Pressure: {{ weather_data.current.pressure_mb }} mb,
-                        </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/wind.png') }}">
+                        Wind: {{ weather_data.current.wind_dir }},
+                        {{ weather_data.current.wind_kph }} km/h,
+                        Gust: {{ weather_data.current.gust_kph }} km/h
+                        <img src="{{ url_for('static', filename='condition-icons/storm.png') }}">
+                    </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/vision.png') }}">
+                        Visibility: {{ weather_data.current.vis_km }} km,
+                        <img src="{{ url_for('static', filename='condition-icons/rainfall.png') }}">
+                        Precipitation: {{ weather_data.current.precip_mm }} mm,
+                    </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/atmospheric.png') }}">
+                        Pressure: {{ weather_data.current.pressure_mb }} mb,</p>
+
                     {% elif temperature_unit == 'fahrenheit' %}
-                        <p>Wind: {{ weather_data.current.wind_dir }},
-                            {{ weather_data.current.wind_mph }} mi/h, 
-                            Gust: {{ weather_data.current.gust_mph }} mi/h,
-                        </p>
-                        <p>Visibility: {{ weather_data.current.vis_miles }} mi,
-                            Precipitation: {{ weather_data.current.precip_mm }} mm,
-                            Pressure: {{ weather_data.current.pressure_mb }} mb,
-                        </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/wind.png') }}">
+                        Wind: {{ weather_data.current.wind_dir }},
+                        {{ weather_data.current.wind_mph }} mi/h, 
+                        Gust: {{ weather_data.current.gust_mph }} mi/h,
+                        <img src="{{ url_for('static', filename='condition-icons/storm.png') }}">
+                    </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/vision.png') }}">
+                        Visibility: {{ weather_data.current.vis_miles }} mi,
+                        <img src="{{ url_for('static', filename='condition-icons/rainfall.png') }}">
+                        Precipitation: {{ weather_data.current.precip_in }} in,
+                    </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/atmospheric.png') }}">
+                        Pressure: {{ weather_data.current.pressure_in }} in
+                    </p>
+
                     {% endif %}
                     <p>Humidity: {{ weather_data.current.humidity}}%, Cloudy: {{ weather_data.current.cloud }}%</p>
                     <p>{{ weather_data.current.condition.text }} {{ time_of_day }}</p>
@@ -141,8 +155,7 @@
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             // Set initial temperature values (replace with actual values)
-            var temperatureCelsius = {{ weather_data.current.temp_c|default ('0')
-        }};
+        var temperatureCelsius = {{ weather_data.current.temp_c|default ('0')}};
         var temperatureFahrenheit = {{ weather_data.current.temp_f|default ('0') }};
         var feelslikeCelsius = {{ weather_data.current.feelslike_c|default ('0') }};
         var feelslikeFahrenheit = {{ weather_data.current.feelslike_f|default ('0') }};
@@ -160,15 +173,15 @@
             }
 
             // Calculate the height for the mercury element
-            var mercuryHeight = temperatureValue * 1;
-            var feelslikeHeight = feelslikeValue * 1;
+            var mercuryHeight = temperatureValue + 50;
+            var feelslikeHeight = feelslikeValue + 50;
 
             // Set the height dynamically using JavaScript
             var mercuryElement = document.querySelector('.mercury');
-            mercuryElement.style.height = mercuryHeight + '%';
+            mercuryElement.style.height = mercuryHeight + 'px';
 
             var feelslikeElement = document.querySelector('.feelslike');
-            feelslikeElement.style.height = feelslikeHeight + '%';
+            feelslikeElement.style.height = feelslikeHeight + 'px';
 
             // Set the temperature value and unit
             var temperatureValueElement = document.querySelector('.temperature-value');
