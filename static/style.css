@@ -9,21 +9,27 @@ body {
 }
 
 .dashboard {
-    margin-top: 170px;
+    margin-top: 300px;
 }
 
 .center-div-login {
     text-align: center;
-    margin: 0 auto;
-    margin-top: 100px; /* Adjust the margin based on your layout */
-    max-width: 200px;
+    margin-top: 100px;
+}
+
+.center-div-login input{
+    height: 22px;
+    margin: 10px;
 }
 
 .center-div-register {
-    margin: 0 auto;
     text-align: center;
-    margin-top: 150px; /* Adjust the margin based on your layout */
-    max-width: 200px;
+    margin-top: 100px;
+}
+
+.center-div-register input {
+    height: 22px;
+    margin: 10px;
 }
 
 .chat-form {
@@ -34,28 +40,33 @@ body {
 
 label {
     display: block;
-    margin-bottom: 8px;
 }
 
-input {
+.chat-input {
     width: 100%;
     padding: 8px;
     margin-bottom: 15px;
     box-sizing: border-box;
 }
 
+.chat-input input{
+    height: 22px;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+
 button img {
-    width: 35px;
+    width: 100%;
     vertical-align: middle;
-    margin-right: 5px;
 }
 
 button {
+    width: 50px;
+    height: 50px;
     background-color: #ffffffa4;
     border-radius: 10px;
     transition: 0.3s;
-    padding: 5px 10px;
-    margin: 0px 0px 10px 0px
 }
 
 button:hover {
@@ -63,13 +74,31 @@ button:hover {
        transform: scale(1.1); /* You can adjust the scaling factor as needed */
        transition: transform 0.3s ease; /* Optional: Add a smooth transition effect */
 }
+.weather-container {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the start of the cross axis */
+}
 
 .weather-info-table {
+    margin-left: 10px;
+    width: 60%;
+}
+
+.weather-info-table p {
+    margin-left: 5px 
+}
+
+.weather-info-table table {
+    border: 1px solid #ddd;
+    text-align: center;
     width: 100%;
 }
 
 .forecast-table {
     border-collapse: collapse;
+    width: 100%;
 }
 
 .forecast-table td {
@@ -80,11 +109,6 @@ button:hover {
 
 .forecast-table th {
     border: 1px solid #ddd;
-}
-
-.forecast-table img {
-    width: 30px;
-    height: 30px;
 }
 
 .error-message {
@@ -100,9 +124,13 @@ button:hover {
 }
 
 .input-section {
-    width: 155px;
-    margin: 0 auto;
+    width: 40%;
     text-align: center;
+}
+
+.input-section input {
+    max-width: 135px;
+    margin: 10px;
 }
 
 .currency-container {
@@ -116,7 +144,11 @@ button:hover {
     max-width: 200px;
     margin: 0 auto;
     text-align: center;
+}
 
+.currency-form input{
+    height: 22px;
+    margin: 10px;
 }
 
 .currency-info {
@@ -199,14 +231,14 @@ button:hover {
 }
 
 .message-box {
+    background-color: #0063ff36;
     margin: 0 auto;
-    padding: 20px;
+    padding: 5px;
     border-color: black;
     border-width: 2px;
     border-style: solid;
     border-radius: 10px;
-    background-color: whitesmoke;
-    height: 50vh;
+    height: 70vh;
     display: flex;
     flex-direction: column;
     width: 80vw;
@@ -219,11 +251,6 @@ button:hover {
     width: 100%;
 }
 
-.inputs {
-    padding: 10px;
-    display: flex;
-}
-
 h2 {
     text-align: center;
 }
@@ -232,16 +259,109 @@ h2 {
     flex: 1;
 }
 
-.text {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    padding-left: 10px;
-    padding-right: 10px;
+.text span {
+    display: block; /* Display each span on a new line */
+    overflow-wrap: break-word; /* Wrap long words within the span */
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
+.text strong {
+    margin-left: 5px;
+}
 .muted {
+    font-size: 7px;
+}
+
+.left {
+    text-align: left;
+    background-color: rgb(16 229 247 / 55%);
+    margin-bottom: 3px;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 20px;
+    border-top-left-radius: 40px;
+    max-width: 60%;
+}
+
+.right {
+    margin-left: auto;
+    margin-right: 5px;
+    background-color: rgb(218 0 255 / 55%);
+    margin-bottom: 3px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    max-width: 60%;
+    
+}
+
+.temperature-unit-radio label {
+    display: inline;
+    margin-left: 10px
+}
+
+.weather-data-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.alarm-clock {
+    text-align: center;
+    font-family: fantasy;
+    font-size: 1.5rem;
+    color: #ffffffe3;
+}
+
+.weather-condition {
+    margin-left: 5px;
+    text-wrap: balance;
+}
+
+.weather-condition img{
+    width: 50px;
+}
+
+.thermometer {
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mercury {
+    margin-left: 35%;
+    width: 30%;
+    background-color: #ff0000;
+    position: absolute;
+    bottom: 0px;
+    transition: height 0.5s ease-in-out;
+}
+
+.feelslike {
+    margin-left: 35%;
+    width: 30%;
+    background-color: #fefe0d77;
+    position: absolute;
+    bottom: 0px;
+    transition: height 0.5s ease-in-out;
+}
+
+.temperature-value {
+    transform: translateX(-50%);
+    font-size: 16px;
+}
+
+.feel-value {
+    transform: translateX(-50%);
+    font-size: 16px;
+}
+
+.weather-location {
+    text-align: center;
+    font-size: 25px;
+}
+
+.examples {
     font-size: 10px;
-    color: darkgray;
+    color: white;
 }

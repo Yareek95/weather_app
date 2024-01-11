@@ -11,114 +11,238 @@
 <body>
     <div class="header-buttons">
         {% if 'username' in session %}
-            <p><a href="{{ url_for('logout') }}">
-                    <button><img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
-                </a>
-                <a href="{{ url_for('index') }}">
-                    <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button>
-                </a>
-                <a href="{{ url_for('dashboard') }}">
-                    <button><img src="{{ url_for('static', filename='link-icons/book-atlas-solid.svg') }}" alt=book-atlas-solid.svg></button>
-                </a>
-            </p>
+        <p><a href="{{ url_for('logout') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/logout.svg') }}" alt=logout.svg></button>
+            </a>
+            <a href="{{ url_for('index') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}"
+                        alt=house-solid.svg></button>
+            </a>
+            <a href="{{ url_for('dashboard') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/book-atlas-solid.svg') }}"
+                        alt=book-atlas-solid.svg></button>
+            </a>
+        </p>
         {% else %}
-            <p><a href="{{ url_for('login') }}">
+        <p><a href="{{ url_for('login') }}">
                 <button><img src="{{ url_for('static', filename='link-icons/login.svg') }}" alt=login.svg></button>
-                </a>
-                <a href="{{ url_for('register') }}">
-                    <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}" alt=registration.svg></button>
-                </a>
-                <a href="{{ url_for('about') }}">
-                    <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button></a>
-                <a href="{{ url_for('index') }}">
-                    <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}" alt=house-solid.svg></button></a>
-            </p>
+            </a>
+            <a href="{{ url_for('register') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/registration.svg') }}"
+                        alt=registration.svg></button>
+            </a>
+            <a href="{{ url_for('about') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/info.svg') }}" alt=info.svg></button></a>
+            <a href="{{ url_for('index') }}">
+                <button><img src="{{ url_for('static', filename='link-icons/house-solid.svg') }}"
+                        alt=house-solid.svg></button></a>
+        </p>
         {% endif %}
     </div>
-    <div class="input-section">
-        <form id="weatherForm" action="/weather" method="post">
-            <label for="user_input"></label>
-            <input type="text" id="user_input" name="user_input" placeholder="City Name or Zip Code" required>
-            <button type="submit">
-                <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
-            </button>
-        </form>
+    {% set time_of_day = 'Day' if weather_data.current.is_day == 1 else 'Night' %}
+    <div class="weather-location">
+        <h3>{{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</h3>
     </div>
-    <div class="weather-info-table">
-        {% if weather_data %}
-            {% if second_api_data %}
-                {% set time_of_day = 'Day' if weather_data.current.is_day == 1 else 'Night' %}
-                <p>{{ weather_data.location.localtime }} and {{ weather_data.current.condition.text }} {{ time_of_day }} in 
-                    {{ weather_data.location.name }}, {{ weather_data.location.region }}, {{ weather_data.location.country }}</p>
-            {% endif %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>Temp</th>
-                        <th>Feels</th>
-                        <th>Wind</th>
-                        <th>Pressure</th>
-                        <th>Visibility</th>
-                        <th>Gust</th>
-                        <th>Precipitation</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ weather_data.current.temp_c }}°C</td>
-                        <td>{{ weather_data.current.feelslike_c }}°C</td>
-                        <td>{{ weather_data.current.wind_kph }} km/h</td>
-                        <td>{{ weather_data.current.pressure_mb }} mb</td>
-                        <td>{{ weather_data.current.vis_km }} km</td>
-                        <td>{{ weather_data.current.gust_kph }} kph</td>
-                        <td>{{ weather_data.current.precip_mm }} mm</td>
-                    </tr>
-                    <tr>
-                        <td>{{ weather_data.current.temp_f }}°F</td>
-                        <td>{{ weather_data.current.feelslike_f }}°F</td>
-                        <td>{{ weather_data.current.wind_mph }} mi/h</td>
-                        <td>{{ weather_data.current.pressure_in }} in</td>
-                        <td>{{ weather_data.current.vis_miles }} miles</td>
-                        <td>{{ weather_data.current.gust_mph }} mph</td>
-                        <td>{{ weather_data.current.precip_in }} inches</td>
-                    </tr>
-                </tbody>
-            </table>
-            <p>Wind Direction: {{ weather_data.current.wind_dir }}, Humidity: {{ weather_data.current.humidity }}, Cloudy: {{ weather_data.current.cloud }}</p>
-    </div>    
+    <div class="weather-container">
+        <div class="input-section">
+            <form id="weatherForm" action="/weather" method="post">
+                <label for="user_input"></label>
+                <input type="text" id="user_input" name="user_input" placeholder="City Name or Zip Code" required>
+                <div class="temperature-unit-radio">
+                    <label for="celsius">°C</label>
+                    <input type="radio" id="celsius" name="temperature_unit" value="celsius">
+                    <label for="fahrenheit">°F</label>
+                    <input type="radio" id="fahrenheit" name="temperature_unit" value="fahrenheit" checked>
+                </div>
+                <button type="submit">
+                    <img src="{{ url_for('static', filename='link-icons/location.svg') }}" alt=location-solid.svg>
+                </button>
+            </form>
+            <div class="examples">
+                <p>Examples: Yellowknife, Rio De Janeiro</p>
+            </div>
+        </div>
+        <div class="weather-info-table">
+            <div class="weather-data-container">
+                <div class="first-table-weather">
+                    <div id="alarmClock" class="alarm-clock"></div>
+                    <div class="thermometer">
+                        <div class="mercury"></div>
+                        <div class="feelslike"></div>
+                    </div>
+                </div>
+                <div class="weather-condition">
+                    <p>Temp: <span class="temperature-value"></span>, Feels like: <span class="feel-value"></span></p>
+
+                    {% if temperature_unit == 'celsius' %}
+                    <p><img src="{{ url_for('static', filename='condition-icons/wind.png') }}">
+                        Wind: {{ weather_data.current.wind_dir }},
+                        {{ weather_data.current.wind_kph }} km/h,
+                        Gust: {{ weather_data.current.gust_kph }} km/h
+                        <img src="{{ url_for('static', filename='condition-icons/storm.png') }}">
+                    </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/vision.png') }}">
+                        Visibility: {{ weather_data.current.vis_km }} km,
+                        <img src="{{ url_for('static', filename='condition-icons/rainfall.png') }}">
+                        Precipitation: {{ weather_data.current.precip_mm }} mm,
+                    </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/atmospheric.png') }}">
+                        Pressure: {{ weather_data.current.pressure_mb }} mb,</p>
+
+                    {% elif temperature_unit == 'fahrenheit' %}
+                    <p><img src="{{ url_for('static', filename='condition-icons/wind.png') }}">
+                        Wind: {{ weather_data.current.wind_dir }},
+                        {{ weather_data.current.wind_mph }} mi/h, 
+                        Gust: {{ weather_data.current.gust_mph }} mi/h,
+                        <img src="{{ url_for('static', filename='condition-icons/storm.png') }}">
+                    </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/vision.png') }}">
+                        Visibility: {{ weather_data.current.vis_miles }} mi,
+                        <img src="{{ url_for('static', filename='condition-icons/rainfall.png') }}">
+                        Precipitation: {{ weather_data.current.precip_in }} in,
+                    </p>
+                    <p><img src="{{ url_for('static', filename='condition-icons/atmospheric.png') }}">
+                        Pressure: {{ weather_data.current.pressure_in }} in
+                    </p>
+
+                    {% endif %}
+                    <p>Humidity: {{ weather_data.current.humidity}}%, Cloudy: {{ weather_data.current.cloud }}%</p>
+                    <p>{{ weather_data.current.condition.text }} {{ time_of_day }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <table class="forecast-table">
         <thead>
             <tr>
                 <th>Date</th>
-                <th>Avg C</th>
-                <th>Min C</th>
-                <th>Max C</th>
-                <th>Avg F</th>
-                <th>Min F</th>
-                <th>Max F</th>
+                {% if temperature_unit == 'celsius' %}
+                <th>Avg °C</th>
+                <th>Min °C</th>
+                <th>Max °C</th>
+                {% elif temperature_unit == 'fahrenheit' %}
+                <th>Avg °F</th>
+                <th>Min °F</th>
+                <th>Max °F</th>
+                {% endif %}
                 <th>Summary</th>
             </tr>
         </thead>
         <tbody>
             {% for day in second_api_data.forecast %}
-                <tr>
-                    <td>{{ day.date }}</td>
-                    <td>{{ day.avg_c }}</td>
-                    <td>{{ day.min_c }}</td>
-                    <td>{{ day.max_c }}</td>
-                    <td>{{ day.avg_f }}</td>
-                    <td>{{ day.min_f }}</td>
-                    <td>{{ day.max_f }}</td>
-                    <td>{{ day.summary }}<img src="{{ url_for('static', filename='weather-icons/' + day.icon) }}" alt=f"{{day.icon}}"></td>
-                </tr>
+            {% if day %}
+            <tr>
+                <td>{{ day.date }}</td>
+                {% if temperature_unit == 'celsius' %}
+                <td>{{ day.avg_c if day.avg_c is defined else '' }}</td>
+                <td>{{ day.min_c if day.min_c is defined else '' }}</td>
+                <td>{{ day.max_c if day.max_c is defined else '' }}</td>
+                {% elif temperature_unit == 'fahrenheit' %}
+                <td>{{ day.avg_f if day.avg_f is defined else '' }}</td>
+                <td>{{ day.min_f if day.min_f is defined else '' }}</td>
+                <td>{{ day.max_f if day.max_f is defined else '' }}</td>
+                {% endif %}
+                <td>{{ day.summary }}<img src="{{ url_for('static', filename='weather-icons/' + day.icon) }}"></td>
+            </tr>
+            {% endif %}
             {% endfor %}
         </tbody>
     </table>
-    {% endif %}
     {% if error_message %}
-        <p class="error-message">{{ error_message }}</p>
+    <p class="error-message">{{ error_message }}</p>
     {% endif %}
-</body>
-</html>
 
-<!---->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Set initial temperature values (replace with actual values)
+        var temperatureCelsius = {{ weather_data.current.temp_c|default ('0')}};
+        var temperatureFahrenheit = {{ weather_data.current.temp_f|default ('0') }};
+        var feelslikeCelsius = {{ weather_data.current.feelslike_c|default ('0') }};
+        var feelslikeFahrenheit = {{ weather_data.current.feelslike_f|default ('0') }};
+
+        // Function to update temperature display
+        function updateTemperature(selectedUnit) {
+            var temperatureValue, feelslikeValue;
+
+            if (selectedUnit === 'celsius') {
+                temperatureValue = temperatureCelsius;
+                feelslikeValue = feelslikeCelsius;
+            } else {
+                temperatureValue = temperatureFahrenheit;
+                feelslikeValue = feelslikeFahrenheit;
+            }
+
+            // Calculate the height for the mercury element
+            var mercuryHeight = temperatureValue + 50;
+            var feelslikeHeight = feelslikeValue + 50;
+
+            // Set the height dynamically using JavaScript
+            var mercuryElement = document.querySelector('.mercury');
+            mercuryElement.style.height = mercuryHeight + 'px';
+
+            var feelslikeElement = document.querySelector('.feelslike');
+            feelslikeElement.style.height = feelslikeHeight + 'px';
+
+            // Set the temperature value and unit
+            var temperatureValueElement = document.querySelector('.temperature-value');
+            temperatureValueElement.innerHTML = temperatureValue + '°' + (selectedUnit === 'celsius' ? 'C' : 'F');
+
+            // Set the "feels like" value and unit
+            var feelslikeValueElement = document.querySelector('.feel-value');
+            feelslikeValueElement.innerHTML = feelslikeValue + '°' + (selectedUnit === 'celsius' ? 'C' : 'F');
+        }
+
+        // Initial update based on the default selected radio button
+        var selectedUnit = document.querySelector('input[name="temperature_unit"]:checked').value;
+        updateTemperature(selectedUnit);
+
+        // Event listener for radio button changes
+        var radioButtons = document.querySelectorAll('input[name="temperature_unit"]');
+        radioButtons.forEach(function (radioButton) {
+            radioButton.addEventListener('change', function () {
+                updateTemperature(this.value);
+            });
+        });
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Get the element where you want to display the alarm clock
+            var alarmClockElement = document.getElementById("alarmClock");
+
+            // Get the API response localtime
+            var apiLocalTime = "{{ weather_data.location.localtime }}";
+
+            // Format the date and time
+            var formattedTime = formatAlarmClock(apiLocalTime);
+
+            // Display the formatted alarm clock
+            alarmClockElement.innerHTML = formattedTime;
+        });
+
+        // Function to format the alarm clock
+        function formatAlarmClock(apiLocalTime) {
+            // Convert the API local time to a JavaScript Date object
+            var date = new Date(apiLocalTime);
+
+            // Get hours, minutes, and seconds
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+
+            // Add leading zero if necessary
+            hours = (hours < 10) ? "0" + hours : hours;
+            minutes = (minutes < 10) ? "0" + minutes : minutes;
+
+            // Format the time as HH:MM
+            var formattedTime = hours + ":" + minutes;
+
+            return formattedTime;
+        }
+    </script>
+
+
+</body>
+
+</html>
